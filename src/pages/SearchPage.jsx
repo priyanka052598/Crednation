@@ -28,7 +28,7 @@ const SearchPage = () => {
       verified: true,
       rating: 4.8,
       reviews: 213,
-      skills: ["Armed", "Event Security", "24x7 Available"],
+      skills: ["Armed", "Event ", "24x7 "],
       experience: "5 years experience",
       hourlyRate: 35,
       profileLink: "/profile",
@@ -41,7 +41,7 @@ const SearchPage = () => {
       verified: true,
       rating: 4.6,
       reviews: 189,
-      skills: ["Unarmed", "Patrolling", "Crowd Control"],
+      skills: ["Unarmed", "Patrolling", " Control"],
       experience: "7 years experience",
       hourlyRate: 40,
       profileLink: "/profile/david",
@@ -54,7 +54,7 @@ const SearchPage = () => {
       verified: false,
       rating: 4.7,
       reviews: 157,
-      skills: ["Armed", "VIP Protection", "Night Security"],
+      skills: ["Armed", "VIP ", "Night "],
       experience: "6 years experience",
       hourlyRate: 38,
       profileLink: "/profile/emily",
@@ -67,7 +67,7 @@ const SearchPage = () => {
       verified: false,
       rating: 4.7,
       reviews: 157,
-      skills: ["Armed", "VIP Protection", "Night Security"],
+      skills: ["Armed", " Protection", " Security"],
       experience: "6 years experience",
       hourlyRate: 38,
       profileLink: "/profile/emily",
@@ -80,7 +80,7 @@ const SearchPage = () => {
       verified: false,
       rating: 4.7,
       reviews: 157,
-      skills: ["Armed", "VIP Protection", "Night Security"],
+      skills: ["Armed", "VIP ", " Security"],
       experience: "6 years experience",
       hourlyRate: 38,
       profileLink: "/profile/emily",
@@ -227,12 +227,12 @@ const SearchPage = () => {
       </div>
       <div className="rounded-81xl border-ripe-plum-50 border-[1px] border-solid box-border h-10 overflow-hidden flex flex-col items-center justify-center">
         <div className="self-stretch flex-1 flex flex-row items-center justify-center py-2.5 px-6">
-          <div className="relative leading-[22px]">Event Security</div>
+          <div className="relative leading-[22px]">Event </div>
         </div>
       </div>
       <div className="rounded-81xl border-ripe-plum-50 border-[1px] border-solid box-border h-10 overflow-hidden flex flex-col items-center justify-center">
         <div className="self-stretch flex-1 flex flex-row items-center justify-center py-2.5 px-6">
-          <div className="relative leading-[22px]">24x7 Available</div>
+          <div className="relative leading-[22px]">24x7 </div>
         </div>
       </div>
     </div>
@@ -242,14 +242,15 @@ const SearchPage = () => {
         {
           (showFilter || window.innerWidth>500) && 
        
-        <div className="self-stretch  bg-gray-300 overflow-hidden  flex flex-col items-start justify-start p-8 box-border gap-8">
+        <div className={` bg-gray-300 ${window.innerWidth<500?"w-full":""} overflow-hidden  flex flex-col items-start p-8  gap-8`}>
 
-       {!showFilter || window.innerWidth>500 &&   <div onClick={()=>{setShowFilter(false)}} className="flex justify-start items-center cursor-pointer gap-2"> <FaArrowLeft/>Back to Search</div>}  
-          <div className=" flex flex-col  w-[60%] gap-2">
-            <div className="relative leading-[24px] font-semibold">Address</div>
-            <div className="self-stretch flex flex-col items-start justify-start">
-              <div className="self-stretch rounded flex flex-row items-start justify-start">
-                <div className="flex-1 rounded-components-input-global-borderradiussm bg-gray-200 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-components-input-component-paddinginline gap-2.5">
+       {window.innerWidth<500 &&   <div onClick={()=>{setShowFilter(false)}} className="flex justify-start items-center cursor-pointer gap-2"> <FaArrowLeft/>Back to Search</div>}  
+          <div className=" flex flex-col   gap-2">
+            <div className="w-full">
+            <div className="relative  leading-[24px] font-semibold">Address</div>
+            <div className="self-stretch  w-full flex flex-col items-start justify-start">
+              <div className="self-stretch  rounded flex flex-row items-start justify-start">
+                <div className="flex-1  w-[290px] rounded-components-input-global-borderradiussm bg-gray-200 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-components-input-component-paddinginline gap-2.5">
                   <input
                     className="[border:none] [outline:none] font-lg-normal text-sm bg-[transparent] relative  text-darkgray text-left h-5 "
                     placeholder="Address"
@@ -265,6 +266,8 @@ const SearchPage = () => {
                 </div>
               </div>
             </div>
+            </div>
+          
           </div>
           <div className="flex flex-col items-start justify-start gap-2">
             <div className="w-[250px] relative leading-[24px] font-semibold flex items-center h-[22px] shrink-0">
@@ -610,14 +613,14 @@ const SearchPage = () => {
                               <div className="rounded-81xl bg-bunker-900 overflow-hidden flex flex-col items-center justify-center p-1">
                                 <div className="self-stretch flex flex-row items-center justify-center py-0 px-2">
                                   <div className="relative text-xs leading-[20px] font-lg-normal text-bunker-50 text-center">
-                                    Event Security
+                                    Event 
                                   </div>
                                 </div>
                               </div>
                               <div className="rounded-81xl bg-bunker-900 overflow-hidden flex flex-col items-center justify-center p-1">
                                 <div className="self-stretch flex flex-row items-center justify-center py-0 px-2">
                                   <div className="relative text-xs leading-[20px] font-lg-normal text-bunker-50 text-center">
-                                    24x7 Available
+                                    24x7 
                                   </div>
                                 </div>
                               </div>
@@ -648,13 +651,13 @@ const SearchPage = () => {
                                 </div>
                               </div>
                             </div>
-                            <button className="cursor-pointer [border:none] p-0 bg-ripe-plum-950 self-stretch rounded-lg h-12 overflow-hidden shrink-0 flex flex-col items-center justify-center">
+                            <Link to="/booking" className="cursor-pointer [border:none] p-0 bg-ripe-plum-950 self-stretch rounded-lg h-12 overflow-hidden shrink-0 flex flex-col items-center justify-center">
                               <div className="self-stretch flex-1 flex flex-row items-center justify-center py-2.5 px-6">
-                                <div className="relative text-sm leading-[22px] font-lg-normal text-ripe-plum-50 text-center">
+                                <div  className="relative text-sm leading-[22px] font-lg-normal text-ripe-plum-50 text-center">
                                   Hire Guard
                                 </div>
                               </div>
-                            </button>
+                            </Link>
                             <button className="cursor-pointer border-ripe-plum-50 border-[1px] border-solid p-0 bg-[transparent] self-stretch rounded-lg box-border h-12 overflow-hidden shrink-0 flex flex-col items-center justify-center">
                               <Link to="/profile" className="no-underline">
                                 <div className="self-stretch flex-1 flex flex-row items-center justify-center py-2.5 px-6">

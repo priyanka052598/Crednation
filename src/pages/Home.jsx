@@ -46,13 +46,19 @@ const Home = () => {
     console.log("Form submitted:", formData);
   };
 
+
+
+
+  
+
+
   return (
     <div className="w-full relative [background:linear-gradient(179.41deg,_#18181b,_#3e065f)] overflow-hidden flex flex-col items-start justify-start min-w-[320px] text-left text-19xl text-bunker-50 font-lg-normal">
       <Header />
-      <div className="self-stretch overflow-hidden flex flex-col md:flex-row items-start justify-start flex-wrap content-start py-8 md:py-16 px-4 md:px-8 box-border gap-4 md:gap-8 min-w-[320px]">
-        <div className="flex-1 flex flex-col items-start justify-start gap-8 min-w-[256px]">
+      <div className="self-stretch overflow-hidden bg-[#181818] flex flex-col md:flex-row items-start justify-start flex-wrap content-start py-8 md:py-16 px-4 md:px-8 box-border gap-4 md:gap-8 min-w-[320px]">
+        <div className="flex-1 flex   flex-  items-start justify-start gap-8 min-w-[256px]">
           <form onSubmit={handleSubmit} className="w-full max-w-3xl mx-auto">
-            <div className="self-stretch flex flex-col items-start justify-start gap-4">
+            <div className="self-stretch  flex flex-col items-start justify-start gap-4">
               <div className="text-2xl font-semibold leading-[46px]">
                 Find Trusted Security Guards Anytime, Anywhere
               </div>
@@ -78,7 +84,7 @@ const Home = () => {
               </div>
 
               {/* Start Date Input */}
-              <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
+              {/* <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
                 <AiOutlineCalendar className="text-darkgray text-xl" />
                 <input
                   type="datetime-local"
@@ -90,7 +96,52 @@ const Home = () => {
                     colorScheme: "dark",
                   }}
                 />
-              </div>
+              </div> */}
+
+
+<div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
+  <AiOutlineCalendar className="text-[#9CA3AF] text-xl" />
+  <input
+    type="datetime-local"
+    name="startDate"
+    value={formData.startDate}
+    onChange={handleChange}
+    className="w-full bg-transparent text-gray-250 border-none outline-none px-2 [&::-webkit-calendar-picker-indicator]:hover:bg-gray-00 [&::-webkit-calendar-picker-indicator]:rounded [&::-webkit-calendar-picker-indicator]:p-1"
+    style={{
+      colorScheme: "dark", // Supports dark mode styling
+    }}
+  />
+  <style jsx>{`
+    /* Dark Mode */
+    @media (prefers-color-scheme: dark) {
+      input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+        background-color: transparent; /* Make the calendar icon background transparent */
+      }
+
+      input[type="datetime-local"] {
+        color: #888; /* Dark grey text for input */
+      }
+    }
+
+    /* Light Mode */
+    @media (prefers-color-scheme: light) {
+      input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+        background-color: transparent; /* Make the calendar icon background transparent */
+      }
+
+      input[type="datetime-local"] {
+        color: #6b6b6b; /* Grey text for input */
+      }
+    }
+
+    /* Remove background on click */
+    input[type="datetime-local"]:focus::-webkit-calendar-picker-indicator {
+      background-color: transparent; /* Ensure background is removed on click */
+    }
+  `}</style>
+</div>
+
+
 
               {/* End Date Input */}
               <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
@@ -100,7 +151,7 @@ const Home = () => {
                   name="endDate"
                   value={formData.endDate}
                   onChange={handleChange}
-                  className="w-full bg-transparent text-darkgray border-none outline-none px-2 [&::-webkit-calendar-picker-indicator] [&::-webkit-calendar-picker-indicator]:hover:bg-gray-300 [&::-webkit-calendar-picker-indicator]:rounded [&::-webkit-calendar-picker-indicator]:p-1"
+                  className="w-full bg-transparent text-gray-250 border-none outline-none px-2 [&::-webkit-calendar-picker-indicator] [&::-webkit-calendar-picker-indicator]:hover:bg-gray-300 [&::-webkit-calendar-picker-indicator]:rounded [&::-webkit-calendar-picker-indicator]:p-1"
                   style={{
                     colorScheme: "dark",
                   }}

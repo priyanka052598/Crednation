@@ -48,9 +48,9 @@ const RegisterAsAGuard1 = () => {
   
 
   return (
-    <div className="w-full relative [background:linear-gradient(179.48deg,_#0e0e10,_#3e065f)] overflow-hidden flex flex-col items-start justify-start min-w-[360px] text-left text-base text-ripe-plum-50 font-lg-normal">
+    <div className="w-full relativ [background:linear-gradient(179.48deg,_#0e0e10,_#3e065f)] overflow-hidden flex flex-col items-start justify-start min-w-[360px] text-left text-base text-ripe-plum-50 font-lg-normal">
       <Header />
-      <div className="self-stretch flex flex-row items-start justify-start flex-wrap content-start py-16 px-8 gap-8 text-11xl text-components-button-component-primarycolor">
+      <div className="self-stretch bg-gradient-to-b from-[#19191C] to-[#22142C] flex flex-row items-start justify-start flex-wrap content-start py-16 px-8 gap-8 text-11xl text-components-button-component-primarycolor">
         <div className="flex-1 flex flex-col items-start justify-start gap-8 min-w-[280px]">
           <form
             onSubmit={handleSubmit}

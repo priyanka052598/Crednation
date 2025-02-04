@@ -27,7 +27,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <div className="self-stretch flex flex-col items-start justify-start py-16 px-8 box-border gap-8 min-w-[320px] text-center">
+    <div className="self-stretch flex bg-gradient-to-b from-[#19191C] to-[#22142C] flex-col items-start justify-start py-16 px-8 box-border gap-8 min-w-[320px] text-center">
       <div className="self-stretch relative leading-[46px] font-semibold">
         What Our Clients Say
       </div>

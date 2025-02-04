@@ -1,6 +1,9 @@
 import { useCallback } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { MdOutlineCalendarToday, MdOutlineLocationOn } from "react-icons/md";
+import { FaRegClock } from "react-icons/fa6";
+
 
 const BookingPage = () => {
   
@@ -31,11 +34,12 @@ const BookingPage = () => {
                     <div className="self-stretch flex flex-row items-center justify-start flex-wrap content-center text-sm text-components-input-global-colortext font-base-base-normal">
                       <div className="flex-1 rounded bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden flex flex-row items-center justify-start py-0 px-4 min-w-[256px]">
                         <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
-                          <img
+                          {/* <img
                             className="w-4 relative h-4 overflow-hidden shrink-0"
                             alt=""
                             src="/icon--calendaroutlined.svg"
-                          />
+                          /> */}
+                          <MdOutlineCalendarToday className="text-[16px] text-[#7C7C88]"/>
                           <div className="relative leading-[22px] hidden">
                             Prefix
                           </div>
@@ -57,11 +61,7 @@ const BookingPage = () => {
                     <div className="self-stretch flex flex-row items-center justify-start flex-wrap content-center min-w-[256px] text-sm text-components-input-global-colortext font-base-base-normal">
                       <div className="flex-1 rounded bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden flex flex-row items-center justify-start py-0 px-4 min-w-[256px]">
                         <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
-                          <img
-                            className="w-4 relative h-4 overflow-hidden shrink-0"
-                            alt=""
-                            src="/icon--clockcircleoutlined.svg"
-                          />
+                        <FaRegClock className="text-[16px] text-[#7C7C88]"/>
                           <div className="relative leading-[22px] hidden">
                             Prefix
                           </div>
@@ -83,11 +83,7 @@ const BookingPage = () => {
                     <div className="self-stretch flex flex-row items-center justify-start flex-wrap content-center min-w-[256px] text-sm text-components-input-global-colortext font-base-base-normal">
                       <div className="flex-1 rounded bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden flex flex-row items-center justify-start py-0 px-4 min-w-[256px]">
                         <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
-                          <img
-                            className="w-4 relative h-4"
-                            alt=""
-                            src="/hourglass.svg"
-                          />
+                        <MdOutlineCalendarToday className="text-[16px] text-[#7C7C88]"/>
                           <div className="relative leading-[22px] hidden">
                             Prefix
                           </div>
@@ -109,11 +105,7 @@ const BookingPage = () => {
                     <div className="self-stretch flex flex-row items-center justify-start flex-wrap content-center min-w-[256px] text-sm text-components-input-global-colortext font-base-base-normal">
                       <div className="flex-1 rounded bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden flex flex-row items-center justify-start py-0 px-4 min-w-[256px]">
                         <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
-                          <img
-                            className="w-4 relative h-4"
-                            alt=""
-                            src="/guardian.svg"
-                          />
+                        <MdOutlineCalendarToday className="text-[16px] text-[#7C7C88]"/>
                           <div className="relative leading-[22px] hidden">
                             Prefix
                           </div>
@@ -136,11 +128,7 @@ const BookingPage = () => {
                   <div className="self-stretch flex flex-row items-center justify-start text-sm text-components-input-global-colortext font-base-base-normal">
                     <div className="flex-1 rounded-components-input-global-borderradiussm bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-4 min-w-[256px]">
                       <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
-                        <img
-                          className="w-4 relative h-4"
-                          alt=""
-                          src="/location-on.svg"
-                        />
+                      <MdOutlineLocationOn className="text-[16px] text-[#7C7C88]"/>
                         <div className="relative leading-[22px] hidden">
                           Prefix
                         </div>
@@ -150,11 +138,7 @@ const BookingPage = () => {
                         <div className="relative leading-[22px] text-right hidden">
                           Suffix
                         </div>
-                        <img
-                          className="w-4 relative h-4 overflow-hidden shrink-0 hidden"
-                          alt=""
-                          src="/icon--infocircleoutlined.svg"
-                        />
+                        <MdOutlineCalendarToday className="text-[16px] text-[#7C7C88]"/>
                       </div>
                     </div>
                   </div>
@@ -165,11 +149,7 @@ const BookingPage = () => {
                   </div>
                   <div className="self-stretch rounded-components-input-global-borderradiussm bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-4 min-w-[256px] text-sm text-components-input-global-colortext font-base-base-normal">
                     <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
-                      <img
-                        className="w-4 relative h-4"
-                        alt=""
-                        src="/vector7.svg"
-                      />
+                    <MdOutlineCalendarToday className="text-[16px] text-[#7C7C88]"/>
                       <div className="relative leading-[22px] hidden">
                         Prefix
                       </div>
@@ -179,11 +159,7 @@ const BookingPage = () => {
                       <div className="relative leading-[22px] text-right hidden">
                         Suffix
                       </div>
-                      <img
-                        className="w-4 relative h-4 overflow-hidden shrink-0 hidden"
-                        alt=""
-                        src="/icon--infocircleoutlined.svg"
-                      />
+                      <MdOutlineCalendarToday className="text-[16px] text-[#7C7C88]"/>
                     </div>
                   </div>
                 </div>

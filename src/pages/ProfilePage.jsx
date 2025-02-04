@@ -1,30 +1,32 @@
 import { useCallback } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { PiShoppingBagOpenFill } from "react-icons/pi";
+
 
 const ProfilePage = () => {
 
   return (
     <div className="w-full relative [background:linear-gradient(179.41deg,_#18181b,_#3e065f)] overflow-hidden flex flex-col items-start justify-start min-w-[360px] text-left text-base text-ripe-plum-50 font-lg-normal">
      <Header/>
-      <div className="self-stretch flex flex-row items-center justify-start flex-wrap content-center py-16 px-8 gap-x-8 gap-y-16 text-19xl text-components-button-component-primarycolor">
-        <div className="flex-1 flex flex-row items-center justify-start flex-wrap content-center gap-8 min-w-[220px]">
-          <div className="w-[188px] rounded-[100px] bg-components-button-component-primarycolor border-ripe-plum-500 border-[4px] border-solid box-border h-[188px] overflow-hidden shrink-0 flex flex-row items-center justify-center">
+      <div className="self-stretch flex  items-center justify-start flex-wrap content-center py-16 px-8 gap-x-8 gap-y-16 text-19xl text-components-button-component-primarycolor">
+        <div className="flex  items-center justify-start flex-wrap content-center gap-8 min-w-[220px]">
+          <div className="w-[188px] mx-auto rounded-[100px] bg-components-button-component-primarycolor border-ripe-plum-500 border-[4px] border-solid box-border h-[188px] overflow-hidden shrink-0 flex flex-row items-center justify-center">
             <img
               className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
               alt=""
               src="/image-1-1@2x.png"
             />
           </div>
-          <div className="flex-1 flex flex-col items-start justify-start gap-[11px] min-w-[220px]">
-            <div className="self-stretch relative leading-[46px] font-semibold">
+          <div className="flex-1 flex flex-col items-center justify-start gap-[11px] min-w-[220px]">
+            <div className=" relative text-center leading-[46px] font-semibold">
               James Anderson
             </div>
-            <div className="self-stretch relative text-xl leading-[28px]">
+            <div className={`relative ${window.innerWidth>500 ?"text-left":"text-center"}  text-xl leading-[28px]`}>
               Elite Security Professional
             </div>
-            <div className="self-stretch flex flex-row items-center justify-start flex-wrap content-center gap-4 min-w-[220px] text-center text-sm text-bunker-50">
-              <div className="flex flex-row items-center justify-start flex-wrap content-center gap-2 min-w-[220px]">
+            <div className=" flex flex-col  items-center justify-center  content-center gap-4 min-w-[220px] text-center text-sm text-bunker-50">
+              <div className="flex flex-row items-center justify-start flex-wrap content-center gap-2 ">
                 <div className="flex flex-row items-center justify-start gap-1">
                   <img
                     className="w-5 relative h-5 overflow-hidden shrink-0"
@@ -58,7 +60,7 @@ const ProfilePage = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-row items-center justify-start gap-1">
+              <div className=" gap-1">
                 <div className="w-4 h-4 flex flex-row items-center justify-center">
                   <img
                     className="w-2.5 relative h-3.5"
@@ -66,12 +68,12 @@ const ProfilePage = () => {
                     src="/vector.svg"
                   />
                 </div>
-                <div className="relative leading-[22px]">New York, NY</div>
+                <div className="relative text-center leading-[22px]">New York, NY</div>
               </div>
             </div>
           </div>
         </div>
-        <div className="w-[200px] shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg bg-ripe-plum-950 h-14 flex flex-row items-center justify-center py-[15px] px-12 box-border text-center text-base text-ripe-plum-50">
+        <div className="w-[200px] mx-auto shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg bg-ripe-plum-950 h-14 flex flex-row items-center justify-center py-[15px] px-12 box-border text-center text-base text-ripe-plum-50">
           <div className="relative leading-[24px]">Hire Now</div>
         </div>
       </div>
@@ -111,12 +113,13 @@ const ProfilePage = () => {
               </div>
             </div>
             <div className="self-stretch flex flex-row items-start justify-start gap-4">
-              <div className="w-12 rounded-13xl bg-ripe-plum-400 h-12 overflow-hidden shrink-0 flex flex-row items-center justify-start p-3 box-border">
-                <img
-                  className="w-6 relative h-6"
+              <div className="w-11 rounded-full bg-ripe-plum-400 h-11 flex  justify-center items-center p-3 box-border">
+                {/* <img
+                  className="w-6 text-[#1A1A2A] relative h-6"
                   alt=""
                   src="/clip-path-group.svg"
-                />
+                /> */}
+                <PiShoppingBagOpenFill className="text-[#1A1A2A] text-[26px]"/>
               </div>
               <div className="flex-1 flex flex-col items-start justify-center gap-2">
                 <div className="self-stretch flex flex-col items-start justify-start">
@@ -136,12 +139,13 @@ const ProfilePage = () => {
               </div>
             </div>
             <div className="self-stretch flex flex-row items-start justify-start gap-4">
-              <div className="w-12 rounded-13xl bg-ripe-plum-400 h-12 overflow-hidden shrink-0 flex flex-row items-center justify-start p-3 box-border">
-                <img
-                  className="w-6 relative h-6"
+            <div className="w-11 rounded-full bg-ripe-plum-400 h-11 flex  justify-center items-center p-3 box-border">
+                {/* <img
+                  className="w-6 text-[#1A1A2A] relative h-6"
                   alt=""
                   src="/clip-path-group.svg"
-                />
+                /> */}
+                <PiShoppingBagOpenFill className="text-[#1A1A2A] text-[26px]"/>
               </div>
               <div className="flex-1 flex flex-col items-start justify-center gap-2">
                 <div className="self-stretch flex flex-col items-start justify-start">
@@ -161,12 +165,13 @@ const ProfilePage = () => {
               </div>
             </div>
             <div className="self-stretch flex flex-row items-start justify-start gap-4">
-              <div className="w-12 rounded-13xl bg-ripe-plum-400 h-12 overflow-hidden shrink-0 flex flex-row items-center justify-start p-3 box-border">
-                <img
-                  className="w-6 relative h-6"
+            <div className="w-11 rounded-full bg-ripe-plum-400 h-11 flex  justify-center items-center p-3 box-border">
+                {/* <img
+                  className="w-6 text-[#1A1A2A] relative h-6"
                   alt=""
                   src="/clip-path-group.svg"
-                />
+                /> */}
+                <PiShoppingBagOpenFill className="text-[#1A1A2A] text-[26px]"/>
               </div>
               <div className="flex-1 flex flex-col items-start justify-center gap-2">
                 <div className="self-stretch flex flex-col items-start justify-start">
