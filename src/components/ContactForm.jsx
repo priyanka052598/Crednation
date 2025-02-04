@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const ContactForm = ({ className = "" }) => {
   return (
-<div className={`flex-1 flex flex-col items-start justify-start gap-8 min-w-[250px] text-left text-xl text-ripe-plum-50 font-lg-normal ${className}`}>
+<div className={`flex-1  flex flex-col items-start justify-start gap-8 min-w-[250px] text-left text-xl text-ripe-plum-50 font-lg-normal `}>
   
   {/* Name Fields */}
   <div className="self-stretch flex flex-row flex-wrap gap-8 mt-1 lg:mt-2">

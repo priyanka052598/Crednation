@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 const ContactUs = () => {
  
   return (
-    <div className="w-full relative [background:linear-gradient(179.41deg,_#18181b,_#3e065f)] overflow-hidden flex flex-col items-start justify-start min-w-[320px] text-left text-13xl text-ripe-plum-50 font-lg-normal">
+<div className="w-full relative  [background:linear-gradient(180deg,_rgba(25,25,28,1)_80%,_rgba(45,33,56,1)_100%)] overflow-hidden flex flex-col items-start justify-start min-w-[320px] text-left text-13xl text-ripe-plum-50 font-lg-normal">
     
       <Header/>
       <div className="self-stretch overflow-hidden flex flex-row items-start justify-start flex-wrap content-start py-16 px-8 box-border gap-20 min-w-[320px] text-19xl">

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Testimonials from "../components/testimonial";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import {
   AiOutlineEnvironment,
   AiOutlineCalendar,
@@ -16,7 +18,11 @@ import {
   AiOutlineCustomerService,
 } from "react-icons/ai";
 
+import "../../src/global.css"
+
 const Home = () => {
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date())
   const [formData, setFormData] = useState({
     address: "",
     startDate: "",
@@ -25,6 +31,20 @@ const Home = () => {
     minBudget: "",
     maxBudget: "",
   });
+
+  const customStyles = {
+    '.react-datepicker__month': {
+      backgroundColor: '#3E065F',
+    },
+    '.react-datepicker__day--selected': {
+      backgroundColor: '#3E065F',
+      color: 'white',
+    },
+    '.react-datepicker__day:hover': {
+      backgroundColor: '#ddd',
+    }
+  };
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -71,15 +91,15 @@ const Home = () => {
             {/* Input Grid Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
               {/* Address Input */}
-              <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
-                <AiOutlineEnvironment className="text-darkgray text-xl" />
+              <div className="flex items-center text-[#9CA3AF] bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
+                <AiOutlineEnvironment className="text-[#9CA3AF] text-xl" />
                 <input
                   type="text"
                   name="address"
                   value={formData.address}
                   onChange={handleChange}
                   placeholder="Address"
-                  className="w-full bg-transparent text-darkgray border-none outline-none px-2"
+                  className="w-full bg-transparent text-[#9CA3AF] border-none outline-none px-2"
                 />
               </div>
 
@@ -99,63 +119,52 @@ const Home = () => {
               </div> */}
 
 
-<div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
+<div className="flex justify-start items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
+  <AiOutlineCalendar className="text-[#9CA3AF] text-xl" />
+  <DatePicker
+     type="datetime-local"
+     
+      selected={startDate}
+      onChange={(date) => setStartDate(date)}
+      className="mb-5 w-full ml-2 bg-transparent outline-none text-[#9CA3AF] cursor-pointer"
+    />
+</div>
+{/* <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
   <AiOutlineCalendar className="text-[#9CA3AF] text-xl" />
   <input
     type="datetime-local"
     name="startDate"
     value={formData.startDate}
     onChange={handleChange}
-    className="w-full bg-transparent text-gray-250 border-none outline-none px-2 [&::-webkit-calendar-picker-indicator]:hover:bg-gray-00 [&::-webkit-calendar-picker-indicator]:rounded [&::-webkit-calendar-picker-indicator]:p-1"
-    style={{
-      colorScheme: "dark", // Supports dark mode styling
-    }}
+
+    className="w-full bg-transparent text-[#9CA3AF] border-none outline-none px-2 
+               [&::-webkit-calendar-picker-indicator]:opacity-50 
+               [&::-webkit-calendar-picker-indicator]:hover:opacity-100"
   />
-  <style jsx>{`
-    /* Dark Mode */
-    @media (prefers-color-scheme: dark) {
-      input[type="datetime-local"]::-webkit-calendar-picker-indicator {
-        background-color: transparent; /* Make the calendar icon background transparent */
-      }
-
-      input[type="datetime-local"] {
-        color: #888; /* Dark grey text for input */
-      }
-    }
-
-    /* Light Mode */
-    @media (prefers-color-scheme: light) {
-      input[type="datetime-local"]::-webkit-calendar-picker-indicator {
-        background-color: transparent; /* Make the calendar icon background transparent */
-      }
-
-      input[type="datetime-local"] {
-        color: #6b6b6b; /* Grey text for input */
-      }
-    }
-
-    /* Remove background on click */
-    input[type="datetime-local"]:focus::-webkit-calendar-picker-indicator {
-      background-color: transparent; /* Ensure background is removed on click */
-    }
-  `}</style>
-</div>
-
+</div> */}
 
 
               {/* End Date Input */}
               <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
                 <AiOutlineClockCircle className="text-darkgray text-xl" />
-                <input
+                {/* <input
                   type="datetime-local"
                   name="endDate"
                   value={formData.endDate}
                   onChange={handleChange}
-                  className="w-full bg-transparent text-gray-250 border-none outline-none px-2 [&::-webkit-calendar-picker-indicator] [&::-webkit-calendar-picker-indicator]:hover:bg-gray-300 [&::-webkit-calendar-picker-indicator]:rounded [&::-webkit-calendar-picker-indicator]:p-1"
+                  placeholder="date"
+                  className="w-full bg-transparent text-[#9CA3AF] border-none outline-none px-2 [&::-webkit-calendar-picker-indicator] [&::-webkit-calendar-picker-indicator]:hover:bg-gray-300 [&::-webkit-calendar-picker-indicator]:rounded [&::-webkit-calendar-picker-indicator]:p-1"
                   style={{
                     colorScheme: "dark",
                   }}
-                />
+                /> */}
+                  <DatePicker
+     type="datetime-local"
+     
+      selected={endDate}
+      onChange={(date) => setEndDate(date)}
+      className="mb-5 w-full ml-2 bg-transparent outline-none text-[#9CA3AF] cursor-pointer"
+    />
               </div>
 
               {/* Service Type Input */}
@@ -165,7 +174,7 @@ const Home = () => {
                   name="serviceType"
                   value={formData.serviceType}
                   onChange={handleChange}
-                  className="w-full bg-gray-100 text-darkgray border-none outline-none px-2"
+                  className="w-full bg-gray-100 text-[#9CA3AF] border-none outline-none px-2"
                 >
                   <option value="" disabled>
                     Select Service Type
@@ -180,7 +189,7 @@ const Home = () => {
               {/* Min Budget Input */}
               <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px] relative">
                 <AiOutlineCreditCard className="text-darkgray text-xl mr-2" />
-                <span className="absolute left-12 text-darkgray text-sm font-medium">
+                <span className="absolute left-12 text-[#9CA3AF] text-sm font-medium">
                   $
                 </span>
                 <input
@@ -189,14 +198,14 @@ const Home = () => {
                   value={formData.minBudget}
                   onChange={handleChange}
                   placeholder="Min. Budget"
-                  className="w-full bg-transparent text-darkgray border-none outline-none pl-6" // Added padding-left
+                  className="w-full bg-transparent text-[#9CA3AF] border-none outline-none pl-6" // Added padding-left
                 />
               </div>
 
               {/* Max Budget Input */}
               <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px] relative">
                 <AiOutlineCreditCard className="text-darkgray text-xl mr-2" />
-                <span className="absolute left-12 text-darkgray text-sm font-medium">
+                <span className="absolute left-12 text-[#9CA3AF] text-sm font-medium">
                   $
                 </span>
                 <input
@@ -205,7 +214,7 @@ const Home = () => {
                   value={formData.maxBudget}
                   onChange={handleChange}
                   placeholder="Max. Budget"
-                  className="w-full bg-transparent text-darkgray border-none outline-none pl-6" // Added padding-left
+                  className="w-full bg-transparent text-[#9CA3AF] border-none outline-none pl-6" // Added padding-left
                 />
               </div>
             </div>
@@ -213,7 +222,7 @@ const Home = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full h-12 md:h-14 mt-4 md:mt-6 bg-ripe-plum-950 hover:bg-blue-500 transition-all duration-300 ease-in-out rounded-lg text-base text-white font-semibold p-3 md:p-4"
+              className="w-full h-12 md:h-14 mt-4 md:mt-6 bg-ripe-plum-950  transition-all duration-300 ease-in-out rounded-lg text-base text-white font-semibold p-3 md:p-4"
             >
               Search Guards
             </button>
@@ -221,10 +230,11 @@ const Home = () => {
         </div>
 
         <img
-          className="flex-1 rounded-lg max-w-full md:max-w-[560px] overflow-hidden h-auto md:h-[548px] object-cover min-w-[256px]"
-          alt=""
-          src="/image-1-1@2x.png"
-        />
+  className="hidden md:block flex-1 rounded-lg max-w-full md:max-w-[560px] overflow-hidden h-auto md:h-[548px] object-cover min-w-[256px]"
+  alt=""
+  src="/image-1-1@2x.png"
+/>
+
       </div>
 
       <div className="self-stretch [background:linear-gradient(5.34deg,_#1c032b,_#3e065f)] flex flex-col items-center justify-start py-16 px-8 box-border gap-16 min-w-[320px] text-center">

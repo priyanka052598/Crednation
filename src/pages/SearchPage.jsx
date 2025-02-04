@@ -90,7 +90,7 @@ const SearchPage = () => {
   
 
   return (
-    <div className="w-full  relative [background:linear-gradient(179.41deg,_#18181b,_#3e065f)] overflow-hidden flex flex-col items-start justify-start text-left text-base text-ripe-plum-50 font-lg-normal">
+    <div className="w-full    relative [background:linear-gradient(179.41deg,_#18181b,_#3e065f)] overflow-hidden flex flex-col items-start justify-start text-left text-base text-ripe-plum-50 font-lg-normal">
       <Header />
       { (showFilter || window.innerWidth>500) && 
       <div className="w-full bg-gray-300 overflow-hidden flex flex-row items-center justify-start flex-wrap content-center py-[18px] px-8 box-border gap-2 text-center text-sm">
@@ -250,7 +250,7 @@ const SearchPage = () => {
             <div className="relative  leading-[24px] font-semibold">Address</div>
             <div className="self-stretch  w-full flex flex-col items-start justify-start">
               <div className="self-stretch  rounded flex flex-row items-start justify-start">
-                <div className="flex-1  w-[290px] rounded-components-input-global-borderradiussm bg-gray-200 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-components-input-component-paddinginline gap-2.5">
+                <div className="flex-1  w-[250px] rounded-components-input-global-borderradiussm bg-gray-200 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-components-input-component-paddinginline gap-2.5">
                   <input
                     className="[border:none] [outline:none] font-lg-normal text-sm bg-[transparent] relative  text-darkgray text-left h-5 "
                     placeholder="Address"
@@ -459,17 +459,39 @@ const SearchPage = () => {
             <div className=" relative leading-[24px] font-semibold text-white">
               Price range
             </div>
-            <div className=" w-[100%]  flex flex-col  gap-4">
-              <input
-                className="border-darkslategray border border-solid outline-none font-lg-normal text-sm bg-gray-200 rounded-components-input-global-borderradiussm box-border h-[57px] py-4 px-3 text-darkgray "
-                placeholder="Min"
-                type="number"
-              />
-              <input
-                className="border-darkslategray border border-solid outline-none font-lg-normal text-sm bg-gray-200 rounded-components-input-global-borderradiussm box-border h-[57px] py-4 px-3 text-darkgray "
-                placeholder="Max"
-                type="number"
-              />
+            <div className=" w-[100%]  flex flex-col  gap-4"> 
+              <div className="flex flex-row justify-start items-center px-3 border-darkslategray border border-solid ">
+              <div className="  text-darkgray text-sm font-medium">
+                  $ 
+                </div>
+                <div>
+                <input
+                min={0}
+
+className=" outline-none font-lg-normal text-sm bg-gray-200 rounded-components-input-global-borderradiussm box-border h-[57px] py-4 px-1 text-darkgray "
+placeholder="Min"
+type="number"
+/>
+                </div>
+               
+              </div>
+              <div className="flex flex-row justify-start items-center px-3 border-darkslategray border border-solid ">
+              <div className="  text-darkgray text-sm font-medium">
+                  $ 
+                </div>
+                <div>
+                <input
+                min={0}
+
+className=" outline-none font-lg-normal text-sm bg-gray-200 rounded-components-input-global-borderradiussm box-border h-[57px] py-4 px-1 text-darkgray "
+placeholder="Max"
+type="number"
+/>
+                </div>
+               
+              </div>
+             
+            
             </div>
           </div>
 

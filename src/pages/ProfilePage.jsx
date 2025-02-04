@@ -73,9 +73,9 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-        <div className="w-[200px] mx-auto shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg bg-ripe-plum-950 h-14 flex flex-row items-center justify-center py-[15px] px-12 box-border text-center text-base text-ripe-plum-50">
+        <Link to="/booking" className="w-[200px] cursor-pointer mx-auto shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg bg-ripe-plum-950 h-14 flex flex-row items-center justify-center py-[15px] px-12 box-border text-center text-base text-ripe-plum-50">
           <div className="relative leading-[24px]">Hire Now</div>
-        </div>
+        </Link>
       </div>
       <div className="self-stretch flex flex-row items-start justify-start flex-wrap content-start p-8 gap-10 text-ripe-plum-100">
         <div className="flex-1 flex flex-col items-start justify-start gap-10 min-w-[280px]">
@@ -413,9 +413,9 @@ const ProfilePage = () => {
                 Professional Security Services
               </div>
             </div>
-            <div className="self-stretch shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg bg-ripe-plum-500 h-14 flex flex-row items-center justify-center py-[15px] px-12 box-border text-base">
+            <Link  to="/booking" className="self-stretch  cursor-pointer shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg bg-ripe-plum-500 h-14 flex flex-row items-center justify-center py-[15px] px-12 box-border text-base">
               <div className="relative leading-[24px]">Hire Now</div>
-            </div>
+            </Link>
           </div>
           <div className="self-stretch rounded-lg border-bunker-600 border-[1px] border-solid flex flex-col items-start justify-center p-8 gap-8 text-left text-11xl text-ripe-plum-100">
             <div className="flex flex-row items-center justify-start">

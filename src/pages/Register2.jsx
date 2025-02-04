@@ -82,6 +82,20 @@ const RegisterAsAGuard = () => {
     console.log("Combined Data:", combinedData);
   };
 
+
+  const [fileName, setFileName] = useState("");
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFileName(file.name); // Update the input field with the file name
+    }
+  };
+
+  const handleFileClick = () => {
+    document.getElementById("fileInput").click(); // Trigger file input click
+  };
+
   return (
     <div className="w-full relative [background:linear-gradient(179.48deg,_#0e0e10,_#3e065f)] overflow-hidden flex flex-col items-start justify-start min-w-[360px] text-left text-base text-ripe-plum-50 font-lg-normal">
       <Header />
@@ -255,7 +269,7 @@ const RegisterAsAGuard = () => {
                 <div className="self-stretch relative leading-[24px] font-semibold">
                   Experience
                 </div>
-                <div className="self-stretch flex flex-row items-center justify-start gap-4 text-sm text-components-button-component-defaultcolor font-base-base-normal">
+                {/* <div className="self-stretch flex flex-row items-center justify-start gap-4 text-sm text-components-button-component-defaultcolor font-base-base-normal">
                   <div className="self-stretch flex-1 rounded-components-input-global-borderradiussm bg-gray-250 border-darkslategray border-[1px] border-solid flex flex-row items-center justify-start py-0 px-4">
                     <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
                       <img
@@ -288,7 +302,48 @@ const RegisterAsAGuard = () => {
                       src="/.svg"
                     />
                   </div>
-                </div>
+                </div> */}
+                 <div className="self-stretch flex flex-row items-center justify-start gap-4 text-sm text-components-button-component-defaultcolor font-base-base-normal">
+      <div className="self-stretch flex-1 rounded-components-input-global-borderradiussm bg-gray-250 border-darkslategray border-[1px] border-solid flex flex-row items-center justify-start py-0 px-4">
+        <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
+          <img
+            className="w-4 relative h-4"
+            alt=""
+            src="/clip-path-group10.svg"
+          />
+          <div className="relative leading-[22px] hidden">Prefix</div>
+          <input
+            className="[border:none] [outline:none] font-lg-normal text-sm bg-[transparent] flex-1 relative leading-[22px] text-darkgray text-left inline-block overflow-hidden text-ellipsis whitespace-nowrap h-[22px]"
+            placeholder="Enter past working experience"
+            type="text"
+            value={fileName} // Display the file name in the input
+            readOnly // Prevent editing the input directly
+          />
+          <div className="relative leading-[22px] text-right hidden">Suffix</div>
+          <img
+            className="w-4 relative h-4 overflow-hidden shrink-0 hidden"
+            alt=""
+            src="/icon--infocircleoutlined.svg"
+          />
+        </div>
+      </div>
+      <div
+        className="w-12 rounded-[75px] border-ripe-plum-50 border-[1px] border-dashed box-border h-12 overflow-hidden shrink-0 flex flex-col items-center justify-center p-2"
+        onClick={handleFileClick} // Trigger file input click
+      >
+        <img
+          className="w-[15.5px] cursor-pointer relative h-[16.2px]"
+          alt=""
+          src="/.svg"
+        />
+      </div>
+      <input
+        id="fileInput"
+        type="file"
+        style={{ display: "none" }}
+        onChange={handleFileChange} // Handle file selection
+      />
+    </div>
               </div>
               <div className="self-stretch flex flex-col items-start justify-start gap-2 min-w-[320px] z-[6]">
                 <div className="self-stretch relative leading-[24px] font-semibold">

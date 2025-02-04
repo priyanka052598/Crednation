@@ -84,4 +84,7 @@ module.exports = {
   corePlugins: {
     preflight: false,
   },
+  fontFamily: {
+    sf: ['SF Display', 'sans-serif'],
+  },
 };

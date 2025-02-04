@@ -3,6 +3,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { MdOutlineCalendarToday, MdOutlineLocationOn } from "react-icons/md";
 import { FaRegClock } from "react-icons/fa6";
+import { LuPersonStanding } from "react-icons/lu";
+import { CgSandClock } from "react-icons/cg";
 
 
 const BookingPage = () => {
@@ -83,7 +85,7 @@ const BookingPage = () => {
                     <div className="self-stretch flex flex-row items-center justify-start flex-wrap content-center min-w-[256px] text-sm text-components-input-global-colortext font-base-base-normal">
                       <div className="flex-1 rounded bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden flex flex-row items-center justify-start py-0 px-4 min-w-[256px]">
                         <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
-                        <MdOutlineCalendarToday className="text-[16px] text-[#7C7C88]"/>
+                        <CgSandClock className="text-[16px] text-[#7C7C88]"/>
                           <div className="relative leading-[22px] hidden">
                             Prefix
                           </div>
@@ -105,7 +107,7 @@ const BookingPage = () => {
                     <div className="self-stretch flex flex-row items-center justify-start flex-wrap content-center min-w-[256px] text-sm text-components-input-global-colortext font-base-base-normal">
                       <div className="flex-1 rounded bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden flex flex-row items-center justify-start py-0 px-4 min-w-[256px]">
                         <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
-                        <MdOutlineCalendarToday className="text-[16px] text-[#7C7C88]"/>
+                        <LuPersonStanding className="text-[20px] text-[#7C7C88]"/>
                           <div className="relative leading-[22px] hidden">
                             Prefix
                           </div>
@@ -176,7 +178,7 @@ const BookingPage = () => {
               </div>
               <img className="w-10 relative h-1" alt="" src="/vector6.svg" />
             </div>
-            <div className="self-stretch flex flex-col items-start justify-start gap-4 min-w-[256px] text-sm text-darkgray">
+            {/* <div className="self-stretch flex flex-col items-start justify-start gap-4 min-w-[256px] text-sm text-darkgray">
               <div className="self-stretch rounded bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden shrink-0 flex flex-row items-center justify-start flex-wrap content-center py-0 px-x4 gap-2.5 min-w-[256px]">
                 <img
                   className="w-6 relative h-6"
@@ -227,7 +229,67 @@ const BookingPage = () => {
               <div className="self-stretch shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg bg-ripe-plum-950 h-[59px] flex flex-row items-center justify-center py-[15px] px-12 box-border min-w-[256px] text-center text-base text-ripe-plum-50">
                 <div className="relative leading-[24px]">Next</div>
               </div>
-            </div>
+            </div> */}
+            <div className="self-stretch flex flex-col items-start justify-start gap-4 min-w-[256px] text-sm text-darkgray">
+  <div className="self-stretch rounded bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden shrink-0 flex flex-row items-center justify-start flex-wrap content-center py-0 px-x4 gap-2.5 min-w-[256px]">
+    <input
+      type="radio"
+      id="debit-credit-card"
+      name="payment-option"
+      className="w-6 relative h-6"
+    />
+    <img
+      className="w-6 relative h-6"
+      alt=""
+      src="/clip-path-group1.svg"
+    />
+    <div className="flex flex-row items-center justify-center py-1.5 px-0">
+      <div className="relative leading-[22px]">
+        Debit/Credit Card
+      </div>
+    </div>
+  </div>
+  
+  <div className="self-stretch rounded bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden shrink-0 flex flex-row items-center justify-start flex-wrap content-center py-0 px-x4 gap-2.5 min-w-[256px]">
+    <input
+      type="radio"
+      id="paypal"
+      name="payment-option"
+      className="w-6 relative h-6"
+    />
+    <img
+      className="w-6 relative h-6"
+      alt=""
+      src="/clip-path-group2.svg"
+    />
+    <div className="flex flex-row items-center justify-center py-1.5 px-0">
+      <div className="relative leading-[22px]">Paypal</div>
+    </div>
+  </div>
+
+  <div className="self-stretch rounded bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden shrink-0 flex flex-row items-center justify-start flex-wrap content-center py-0 px-x4 gap-2.5 min-w-[256px]">
+    <input
+      type="radio"
+      id="apple-pay"
+      name="payment-option"
+      className="w-6 relative h-6"
+    />
+    <img
+      className="w-6 relative h-6"
+      alt=""
+      src="/clip-path-group3.svg"
+    />
+    <div className="flex flex-row items-center justify-center py-1.5 px-0">
+      <div className="relative leading-[22px]">Apple Pay</div>
+    </div>
+  </div>
+  
+
+  <div className="self-stretch shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg bg-ripe-plum-950 h-[59px] flex flex-row items-center justify-center py-[15px] px-12 box-border min-w-[256px] text-center text-base text-ripe-plum-50">
+    <div className="relative leading-[24px]">Next</div>
+  </div>
+</div>
+
           </div>
           <div className="self-stretch flex flex-col items-start justify-start gap-4 min-w-[256px]">
             <div className="self-stretch flex flex-col items-start justify-start gap-2 min-w-[256px]">
@@ -343,8 +405,8 @@ const BookingPage = () => {
                 />
               </div>
               <div className="flex flex-col items-start justify-start gap-2">
-                <div className="w-[101px] flex flex-col items-start justify-start">
-                  <div className="self-stretch relative leading-[28px] font-semibold">
+                <div className="flex flex-col items-start justify-start">
+                  <div className="text-left relative leading-[28px] font-semibold">
                     John Smith
                   </div>
                 </div>
