@@ -42,11 +42,11 @@ const SignUp = () => {
     }
 
     if (formData.phone && !/^\d{10}$/.test(formData.phone)) {
-      newErrors.phone = "Enter a valid 10-digit phone number";
+      newErrors.phone = "Enter a valid  phone number";
     }
 
     if (formData.password && formData.password.length < 8) {
-      newErrors.password = "Password must be at least 8 characters long";
+      newErrors.password = "Enter strong password";
     }
 
     setErrors(newErrors);
@@ -115,12 +115,12 @@ const SignUp = () => {
           </div>
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="self-stretch flex flex-col items-start justify-start gap-4 text-left text-base text-components-button-component-primarycolor">
-            <div className="self-stretch h-[88px] flex flex-col items-start justify-start gap-2">
+          <div className=" flex flex-col items-start justify-start gap-4 text-left text-base text-components-button-component-primarycolor">
+            <div className=" h-[88px] w-full flex flex-col items-start justify-start gap-2">
               <div className="self-stretch relative leading-[24px] font-semibold">
                 Full Name*
               </div>
-              <div className="w-full sm:w-[401px] md:w-[600px] lg:w-[800px] xl:w-[450px] rounded-components-input-global-borderradiussm bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-4 text-sm text-components-input-global-colortext font-base-base-normal">
+              <div className="w-full  rounded-components-input-global-borderradiussm bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-4 text-sm text-components-input-global-colortext font-base-base-normal">
                 <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
                   <img
                     className="w-5 relative h-5"
@@ -128,7 +128,7 @@ const SignUp = () => {
                     src="/clip-path-group2.svg"
                   />
                   <input
-                    className="[border:none] [outline:none] font-lg-normal text-sm bg-[transparent] flex-1 relative leading-[22px] text-darkgray text-left inline-block overflow-hidden text-ellipsis whitespace-nowrap h-[22px]"
+                    className="outline-none font-lg-normal text-sm bg-transparent flex-1 relative leading-[22px] text-darkgray text-left inline-block overflow-hidden text-ellipsis p h-[22px]"
                     placeholder="Enter your full name"
                     type="text"
                     name="fullName"
@@ -136,7 +136,13 @@ const SignUp = () => {
                     onChange={handleChange}
                     required
                   />
-                  {errors.fullName && (
+                 
+                </div>
+             
+              </div>
+             
+            </div>
+            {errors.fullName && (
                     <p className="text-red-500 text-sm">{errors.fullName}</p>
                   )}
                   <img
@@ -144,9 +150,6 @@ const SignUp = () => {
                     alt=""
                     src="/icon--infocircleoutlined.svg"
                   />
-                </div>
-              </div>
-            </div>
 
             <div className="self-stretch h-[88px] flex flex-col items-start justify-start gap-2">
               <div className="self-stretch relative leading-[24px] font-semibold">

@@ -79,10 +79,10 @@ const Home = () => {
         <div className="flex-1 flex   flex-  items-start justify-start gap-8 min-w-[256px]">
           <form onSubmit={handleSubmit} className="w-full max-w-3xl mx-auto">
             <div className="self-stretch  flex flex-col items-start justify-start gap-4">
-              <div className="text-2xl font-semibold leading-[46px]">
+              <div className={` ${ window.innerWidth<500?"text-[30px]" : "text-2xl"} font-semibold leading-[46px]`}>
                 Find Trusted Security Guards Anytime, Anywhere
               </div>
-              <div className="self-stretch relative text-xl leading-[28px] text-bunker-100">
+              <div className={` ${ window.innerWidth<500?"text-[19px]" : "text-xl"} relative  leading-[28px] text-bunker-100`}>
                 Connect with verified security professionals for your business
                 or event needs. Available 24/7, nationwide coverage.
               </div>

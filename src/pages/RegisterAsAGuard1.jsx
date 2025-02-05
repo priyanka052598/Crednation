@@ -273,14 +273,14 @@ const RegisterAsAGuard1 = () => {
                   {field.charAt(0).toUpperCase() + field.slice(1)} *
                 </label>
                 <div className={`self-stretch rounded-components-input-global-borderradiussm bg-gray-250 border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-4 text-sm ${errors[field] ? "border-red-500" : "border-darkslategray"}`}>
-                  <input
-                    className="[border:none] [outline:none] font-lg-normal text-sm bg-[transparent] flex-1 relative leading-[22px] text-darkgray text-left"
-                    placeholder={`Enter your ${field}`}
-                    type={field === "password" ? "password" : field === "email" ? "email" : "text"}
-                    name={field}
-                    value={formData[field]}
-                    onChange={handleChange}
-                  />
+                <input
+  className="peer bg-transparent outline-none font-lg-normal text-sm flex-1 leading-[22px] text-darkgray text-left autofill:bg-red-300"
+  placeholder={`Enter your ${field}`}
+  type={field === "password" ? "password" : field === "email" ? "email" : "text"}
+  name={field}
+  value={formData[field]}
+  onChange={handleChange}
+/>
                 </div>
                 {errors[field] && <p className="text-red-500 text-xs">{errors[field]}</p>}
               </div>

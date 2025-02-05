@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { PiShoppingBagOpenFill } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 
 const ProfilePage = () => {
