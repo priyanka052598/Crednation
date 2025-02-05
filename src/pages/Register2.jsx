@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import { useLocation } from "react-router-dom";
 // import axios from "axios"; // Commented out for now
 import { useState } from "react";
+import { AiOutlineCreditCard } from "react-icons/ai";
 
 const RegisterAsAGuard = () => {
   const location = useLocation();
@@ -221,47 +222,37 @@ const RegisterAsAGuard = () => {
                   Rate
                 </div>
                 <div className="self-stretch flex flex-row items-center justify-start flex-wrap content-center gap-size-base-size text-sm text-components-button-component-defaultcolor font-base-base-normal">
-                  <div className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden flex flex-row items-center justify-start py-0 px-4 min-w-[320px]">
-                    <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
-                      <img
-                        className="w-4 relative h-4 overflow-hidden shrink-0"
-                        alt=""
-                        src="/icon--creditcardoutlined.svg"
-                      />
-                      <div className="relative leading-[22px] hidden">
-                        Prefix
-                      </div>
-                      <input
-                        className="[border:none] [outline:none] font-lg-normal text-sm bg-[transparent] flex-1 relative leading-[22px] text-darkgray text-left overflow-hidden text-ellipsis whitespace-nowrap"
-                        placeholder="Min. Rate"
-                        type="number"
-                      />
-                      <div className="relative leading-[22px] text-right hidden">
-                        Suffix
-                      </div>
-                      <div className="w-[12.2px] h-2 [transform:_rotate(-180deg)]" />
-                    </div>
+                  <div className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden flex flex-row items-center justify-start py-0  min-w-[320px]">
+                    <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px] relative">
+                                  <AiOutlineCreditCard className="text-darkgray text-xl mr-2" />
+                                  <span className="absolute left-12 text-[#9CA3AF] text-sm font-medium">
+                                    $
+                                  </span>
+                                  <input
+                                    type="number"
+                                    name="minBudget"
+                                    value={formData.minBudget}
+                                    onChange={handleChange}
+                                    placeholder="Min. Budget"
+                                    className="w-full bg-transparent text-[#9CA3AF] border-none outline-none pl-6" // Added padding-left
+                                  />
+                                </div>
                   </div>
-                  <div className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden flex flex-row items-center justify-start py-0 px-4 min-w-[320px]">
-                    <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
-                      <img
-                        className="w-4 relative h-4 overflow-hidden shrink-0"
-                        alt=""
-                        src="/icon--creditcardoutlined.svg"
-                      />
-                      <div className="relative leading-[22px] hidden">
-                        Prefix
-                      </div>
-                      <input
-                        className="[border:none] [outline:none] font-lg-normal text-sm bg-[transparent] flex-1 relative leading-[22px] text-darkgray text-left inline-block overflow-hidden text-ellipsis whitespace-nowrap h-[22px]"
-                        placeholder="Max. Rate"
-                        type="number"
-                      />
-                      <div className="relative leading-[22px] text-right hidden">
-                        Suffix
-                      </div>
-                      <div className="w-[12.2px] h-2 [transform:_rotate(-180deg)]" />
-                    </div>
+                  <div className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden flex flex-row items-center justify-start py-0  min-w-[320px]">
+                    <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px] relative">
+                                  <AiOutlineCreditCard className="text-darkgray text-xl mr-2" />
+                                  <span className="absolute left-12 text-[#9CA3AF] text-sm font-medium">
+                                    $
+                                  </span>
+                                  <input
+                                    type="number"
+                                    name="minBudget"
+                                    value={formData.minBudget}
+                                    onChange={handleChange}
+                                    placeholder="Min. Budget"
+                                    className="w-full bg-transparent text-[#9CA3AF] border-none outline-none pl-6" // Added padding-left
+                                  />
+                                </div>
                   </div>
                 </div>
               </div>
@@ -303,7 +294,7 @@ const RegisterAsAGuard = () => {
                     />
                   </div>
                 </div> */}
-                 <div className="self-stretch flex flex-row items-center justify-start gap-4 text-sm text-components-button-component-defaultcolor font-base-base-normal">
+                 {/* <div className="self-stretch flex flex-row items-center justify-start gap-4 text-sm text-components-button-component-defaultcolor font-base-base-normal">
       <div className="self-stretch flex-1 rounded-components-input-global-borderradiussm bg-gray-250 border-darkslategray border-[1px] border-solid flex flex-row items-center justify-start py-0 px-4">
         <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
           <img
@@ -343,7 +334,7 @@ const RegisterAsAGuard = () => {
         style={{ display: "none" }}
         onChange={handleFileChange} // Handle file selection
       />
-    </div>
+    </div> */}
               </div>
               <div className="self-stretch flex flex-col items-start justify-start gap-2 min-w-[320px] z-[6]">
                 <div className="self-stretch relative leading-[24px] font-semibold">

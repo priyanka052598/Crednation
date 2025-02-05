@@ -5,6 +5,8 @@ import { MdOutlineCalendarToday, MdOutlineLocationOn } from "react-icons/md";
 import { FaRegClock } from "react-icons/fa6";
 import { LuPersonStanding } from "react-icons/lu";
 import { CgSandClock } from "react-icons/cg";
+import "../../src/global.css"
+
 
 
 const BookingPage = () => {

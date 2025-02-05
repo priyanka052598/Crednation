@@ -211,6 +211,7 @@ import Footer from "../components/Footer";
 import { FaDollarSign } from "react-icons/fa6";
 import { FaClock } from "react-icons/fa";
 import { RiGraduationCapFill } from "react-icons/ri";
+import "../../src/global.css"
 
 const RegisterAsAGuard1 = () => {
   const navigate = useNavigate();

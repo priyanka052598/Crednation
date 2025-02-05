@@ -5,6 +5,8 @@ import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa6";
+import "../../src/global.css"
+
 
 
 

@@ -122,11 +122,11 @@ const Home = () => {
 <div className="flex justify-start items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
   <AiOutlineCalendar className="text-[#9CA3AF] text-xl" />
   <DatePicker
-     type="datetime-local"
-     
+      // showTimeSelect
+  dateFormat="Pp"
       selected={startDate}
       onChange={(date) => setStartDate(date)}
-      className="mb-5 w-full ml-2 bg-transparent outline-none text-[#9CA3AF] cursor-pointer"
+      className="mb-5 w-full ml-2 bg-transparent outline-none text-[#9CA3AF]  text-[16px] cursor-pointer"
     />
 </div>
 {/* <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
@@ -147,23 +147,13 @@ const Home = () => {
               {/* End Date Input */}
               <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
                 <AiOutlineClockCircle className="text-darkgray text-xl" />
-                {/* <input
-                  type="datetime-local"
-                  name="endDate"
-                  value={formData.endDate}
-                  onChange={handleChange}
-                  placeholder="date"
-                  className="w-full bg-transparent text-[#9CA3AF] border-none outline-none px-2 [&::-webkit-calendar-picker-indicator] [&::-webkit-calendar-picker-indicator]:hover:bg-gray-300 [&::-webkit-calendar-picker-indicator]:rounded [&::-webkit-calendar-picker-indicator]:p-1"
-                  style={{
-                    colorScheme: "dark",
-                  }}
-                /> */}
+              
                   <DatePicker
      type="datetime-local"
      
       selected={endDate}
       onChange={(date) => setEndDate(date)}
-      className="mb-5 w-full ml-2 bg-transparent outline-none text-[#9CA3AF] cursor-pointer"
+      className="mb-5 w-full ml-2 bg-transparent outline-none text-[#9CA3AF]  text-[16px] cursor-pointer"
     />
               </div>
 
@@ -173,6 +163,9 @@ const Home = () => {
                 <select
                   name="serviceType"
                   value={formData.serviceType}
+                  style={{
+                    colorScheme:"dark"
+                  }}
                   onChange={handleChange}
                   className="w-full bg-gray-100 text-[#9CA3AF] border-none outline-none px-2"
                 >
