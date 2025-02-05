@@ -118,3 +118,180 @@ input:-webkit-autofill:active {
 .react-datepicker__time-list-item:nth-child(even){
   background-color: #534e4e;
 }
+
+.custom-calendar .react-datepicker__day--selected {
+  background-color: #8B5CF6 !important; /* Purple selected date */
+  color: white !important;
+  border-radius: 50%;
+}
+
+.custom-calendar .react-datepicker__day:hover {
+  background-color: #A78BFA !important; /* Lighter purple on hover */
+}
+
+
+/* Selected date styling */
+.custom-calendar .react-datepicker__day--selected {
+  background-color: #8B5CF6 !important; /* Purple selected date */
+  color: white !important;
+  border-radius: 50%;
+}
+
+/* Hover effect */
+.custom-calendar .react-datepicker__day:hover {
+  background-color: #A78BFA !important; /* Lighter purple on hover */
+}
+
+/* Full calendar dark mode */
+.custom-calendar {
+  background-color: #1F2937 !important; /* Dark Gray Background */
+  color: white !important;
+  border: 1px solid #374151; /* Subtle border */
+}
+
+/* Change text color of all dates */
+.custom-calendar .react-datepicker__day {
+  color: white !important;
+}
+
+/* Change header (month & year) color */
+.custom-calendar .react-datepicker__current-month,
+.custom-calendar .react-datepicker__header {
+  background-color: #111827 !important; /* Darker Gray */
+  color: white !important;
+}
+
+/* Change navigation button colors */
+.custom-calendar .react-datepicker__navigation {
+  filter: invert(1); /* Makes arrows white */
+}
+
+
+/* Selected date styling */
+.custom-calendar .react-datepicker__day--selected {
+  background-color: #8B5CF6 !important; /* Purple selected date */
+  color: white !important;
+  border-radius: 50%;
+}
+
+/* Hover effect */
+.custom-calendar .react-datepicker__day:hover {
+  background-color: #A78BFA !important; /* Lighter purple on hover */
+}
+
+/* Full calendar dark mode */
+.custom-calendar {
+  background-color: #1F2937 !important; /* Dark Gray Background */
+  color: white !important;
+  border: 1px solid #374151; /* Subtle border */
+}
+
+/* Change text color of all dates */
+.custom-calendar .react-datepicker__day {
+  color: white !important; /* White day numbers */
+}
+
+/* Change header (month & year) color */
+.custom-calendar .react-datepicker__current-month,
+.custom-calendar .react-datepicker__header {
+  background-color: #111827 !important; /* Darker Gray */
+  color: white !important;
+}
+
+/* Change navigation button colors */
+.custom-calendar .react-datepicker__navigation {
+  filter: invert(1); /* Makes arrows white */
+}
+
+/* Time picker styling (side time text) */
+.custom-calendar .react-datepicker__time-container {
+  background-color: #1F2937 !important; /* Same dark gray */
+}
+
+.custom-calendar .react-datepicker__time {
+  background-color: #1F2937 !important;
+  color: black !important; /* Black text for time */
+}
+
+.custom-calendar .react-datepicker__time-list-item {
+  color: black !important; /* Ensure time options are black */
+}
+
+/* Highlight selected time */
+.custom-calendar .react-datepicker__time-list-item--selected {
+  background-color: #8B5CF6 !important; /* Purple background */
+  color: white !important; /* White text */
+}
+
+
+/* Selected date styling */
+.custom-calendar .react-datepicker__day--selected {
+  background-color: #8B5CF6 !important; /* Purple selected date */
+  color: white !important;
+  border-radius: 50%;
+}
+
+/* Hover effect */
+.custom-calendar .react-datepicker__day:hover {
+  background-color: #A78BFA !important; /* Lighter purple on hover */
+}
+
+/* Full calendar dark mode */
+.custom-calendar {
+  background-color: #1F2937 !important; /* Dark Gray Background */
+  color: white !important;
+  border: 1px solid #374151; /* Subtle border */
+}
+
+/* Change text color of all dates */
+.custom-calendar .react-datepicker__day {
+  color: white !important; /* White day numbers */
+}
+
+/* Change header (month & year) color */
+.custom-calendar .react-datepicker__current-month,
+.custom-calendar .react-datepicker__header {
+  background-color: #111827 !important; /* Darker Gray */
+  color: white !important;
+}
+
+/* Change navigation button colors */
+.custom-calendar .react-datepicker__navigation {
+  filter: invert(1); /* Makes arrows white */
+}
+
+/* Style the weekday labels (Mon, Tue, etc.) */
+.custom-calendar .react-datepicker__day-name {
+  color: white !important; /* White weekday labels */
+}
+
+/* Time picker styling */
+.custom-calendar .react-datepicker__time-container {
+  background-color: #1F2937 !important; /* Same dark gray */
+}
+
+.custom-calendar .react-datepicker__time {
+  background-color: #1F2937 !important;
+  color: white !important; /* White text for time */
+}
+
+/* Time heading (above time list) */
+.custom-calendar .react-datepicker__time-box {
+  background-color: #1F2937 !important;
+  color: white !important; /* White time heading */
+}
+
+/* Time picker styling */
+.custom-calendar .react-datepicker__time-container {
+  background-color: #1F2937 !important; /* Same dark gray */
+}
+.custom-calendar .react-datepicker__time-list-item {
+  color: white !important; /* Ensure time options are white */
+}
+/* Highlight selected time */
+.custom-calendar .react-datepicker__time-list-item--selected {
+  background-color: #8B5CF6 !important; /* Purple background */
+  color: white !important; /* White text */
+}
+
+

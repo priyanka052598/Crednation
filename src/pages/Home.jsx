@@ -96,9 +96,8 @@ const Home = () => {
     <textarea
       name="address"
       value={formData.address}
-      
       onChange={handleChange}
-
+      
       placeholder="Address"
       rows="1"
       className="w-full bg-transparent text-[#9CA3AF] pt-1 text-[15px] border-none outline-none px-2 resize-none overflow-hidden"
@@ -138,7 +137,7 @@ const Home = () => {
 </div> */}
 <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
   <AiOutlineCalendar className="text-[#9CA3AF] text-xl" />
-  <input
+  {/* <input
     type="datetime-local"
     name="startDate"
     value={formData.startDate}
@@ -150,7 +149,17 @@ const Home = () => {
     className="w-full bg-transparent text-[#9CA3AF] border-none outline-none px-2 
                [&::-webkit-calendar-picker-indicator]:opacity-50 
                [&::-webkit-calendar-picker-indicator]:hover:opacity-100"
-  />
+  /> */}
+    <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
+      <DatePicker
+        selected={endDate}
+        onChange={(date) => setEndDate(date)}
+        dateFormat="yyyy-MM-dd HH:mm"
+        showTimeSelect
+        className="bg-transparent text-[#9CA3AF] outline-none w-full"
+        calendarClassName="custom-calendar" // Apply custom styles
+      />
+    </div>
 </div>
 
 
@@ -158,19 +167,16 @@ const Home = () => {
 
               <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
   <AiOutlineCalendar className="text-[#9CA3AF] text-xl" />
-  <input
-    type="datetime-local"
-    name="endDate"
-    value={formData.endDate}
-    onChange={handleChange}
-    style={{
-      colorScheme:"dark"
-    }}
-
-    className="w-full bg-transparent text-[#9CA3AF] border-none outline-none px-2 
-               [&::-webkit-calendar-picker-indicator]:opacity-50 
-               [&::-webkit-calendar-picker-indicator]:hover:opacity-100"
-  />
+  <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
+      <DatePicker
+        selected={startDate}
+        onChange={(date) => setStartDate(date)}
+        dateFormat="yyyy-MM-dd HH:mm"
+        showTimeSelect
+        className="bg-transparent text-[#9CA3AF] outline-none w-full"
+        calendarClassName="custom-calendar" // Apply custom styles
+      />
+    </div>
 </div>
 
 

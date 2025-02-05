@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 // import { AiOutlineCreditCard } from "react-icons/ai";
 import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
+import axios from "axios";
 
 
 const RegisterAsAGuard = () => {
@@ -20,6 +21,8 @@ const RegisterAsAGuard = () => {
     experience: "",
     additionalInfo: "",
   });
+
+  console.log("register1Data",register1Data)
 
   const [errors, setErrors] = useState({});
   const [selectedOptions, setSelectedOptions] = useState()
@@ -48,6 +51,9 @@ const RegisterAsAGuard = () => {
 
     setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
   };
+
+
+  
 
   // Handle change
   const handleChange = (e) => {
@@ -113,7 +119,7 @@ const RegisterAsAGuard = () => {
   ];
 
   const toggleSelection = (label) => {
-    setSelectedOptions((prevSelected) => {
+    setSelectedOptions((prevSelected = []) => {
       if (prevSelected.includes(label)) {
         // If already selected, remove from the list
         return prevSelected.filter(item => item !== label);
@@ -123,6 +129,53 @@ const RegisterAsAGuard = () => {
       }
     });
   };
+  
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    // Build the combined data object with the required keys
+    const dataToSend = {
+      guardID: register1Data.guardID || "G1303", // Use guardID from register1Data or default to G1303
+      skills: formData.skills, 
+      summary: formData.profileSummary,
+      minRate: formData.minRate,
+      maxRate: formData.maxRate,
+      experience: formData.experience,
+      additionalInfo: formData.additionalInfo,
+      address: formData.address || "address of guard", // If address is available in formData, use it
+      createdDate: new Date().toISOString(), // Using the current time for createdDate
+      updatedDate: new Date().toISOString(), // Same for updatedDate
+    };
+  
+    let validationErrors = {};
+  
+    // Validate the form data
+    Object.keys(formData).forEach((key) => {
+      validationErrors[key] = validate(key, formData[key]);
+    });
+  
+    if (Object.values(validationErrors).some((err) => err !== "")) {
+      console.log("Validation errors:", validationErrors);
+      return;
+    }
+  
+    try {
+      // Send data to API
+      const response = await axios.post(
+        "http://185.142.34.143:5001/execute-flow/flow_57120abf-fb09-45ce-afdf-2a2c66256a1f",
+        dataToSend
+      );
+      console.log("Response:", response.data);
+  
+      // Navigate to the next page if API call is successful
+      navigate("/register2");
+    } catch (error) {
+      alert("An error occurred while submitting the form. Please try again.");
+    }
+  };
+  
 
   return (
     <div className="w-full relative [background:linear-gradient(179.48deg,_#0e0e10,_#3e065f)] overflow-hidden flex flex-col items-start justify-start min-w-[360px] text-left text-base text-ripe-plum-50 font-lg-normal">
@@ -167,71 +220,7 @@ const RegisterAsAGuard = () => {
               {/* `Skills & Expertise */}
               <div className="self-stretch flex flex-col items-start justify-start gap-2 min-w-[320px] z-[1]">
                 <div className="self-stretch relative leading-[24px] font-semibold">{`Skills & Expertise `}</div>
-                {/* <div className="self-stretch flex flex-row items-start justify-start flex-wrap content-start gap-4 text-sm text-darkgray">
-                  <div className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden flex flex-row items-center justify-start flex-wrap content-center py-0 pl-4 pr-2 gap-2.5 min-w-[320px]">
-                    <input className="w-5 h-4 bg-red-600" type="checkbox" />
-                    <div className="flex flex-row items-center justify-center py-1.5 px-0">
-                      <div className="relative leading-[22px]">
-                        Access Control
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden flex flex-row items-center justify-start flex-wrap content-center py-0 pl-4 pr-2 gap-2.5 min-w-[320px]">
-                    <input className="w-5 h-4" type="checkbox" />
-                    <div className="flex flex-row items-center justify-center py-1.5 px-0">
-                      <div className="relative leading-[22px]">
-                        Surveillance
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden flex flex-row items-center justify-start flex-wrap content-center py-0 pl-4 pr-2 gap-2.5 min-w-[320px]">
-                    <input className="w-5 h-4" type="checkbox" />
-                    <div className="flex flex-row items-center justify-center py-1.5 px-0">
-                      <div className="relative leading-[22px]">
-                        Emergency Response
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden flex flex-row items-center justify-start flex-wrap content-center py-0 pl-4 pr-2 gap-2.5 min-w-[320px]">
-                    <input className="w-5 h-4" type="checkbox" />
-                    <div className="flex flex-row items-center justify-center py-1.5 px-0">
-                      <div className="relative leading-[22px]">First Aid</div>
-                    </div>
-                  </div>
-                  <div className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden flex flex-row items-center justify-start flex-wrap content-center py-0 pl-4 pr-2 gap-2.5 min-w-[320px]">
-                    <input className="w-5 h-4" type="checkbox" />
-                    <div className="flex flex-row items-center justify-center py-1.5 px-0">
-                      <div className="relative leading-[22px]">
-                        Conflict Resolution
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden flex flex-row items-center justify-start flex-wrap content-center py-0 pl-4 pr-2 gap-2.5 min-w-[320px]">
-                    <input className="w-5 h-4" type="checkbox" />
-                    <div className="flex flex-row items-center justify-center py-1.5 px-0">
-                      <div className="relative leading-[22px]">
-                        Physical Security
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden flex flex-row items-center justify-start flex-wrap content-center py-0 pl-4 pr-2 gap-2.5 min-w-[320px]">
-                    <input className="w-5 h-4" type="checkbox" />
-                    <div className="flex flex-row items-center justify-center py-1.5 px-0">
-                      <div className="relative leading-[22px]">
-                        Report Writing
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden flex flex-row items-center justify-start flex-wrap content-center py-0 pl-4 pr-2 gap-2.5 min-w-[320px]">
-                    <input className="w-5 h-4" type="checkbox" />
-                    <div className="flex flex-row items-center justify-center py-1.5 px-0">
-                      <div className="relative leading-[22px]">
-                        Customer Service
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
+              
        
 
 
@@ -243,7 +232,7 @@ const RegisterAsAGuard = () => {
         key={index}
         className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden flex flex-row items-center justify-start flex-wrap content-center py-0 pl-4 pr-2 gap-2.5 min-w-[320px]"
       >
-          {selectedOptions.includes(label) ? (
+          {selectedOptions?.includes(label) ? (
             <ImCheckboxChecked className=" bg-pur" />
           ) : (
             <ImCheckboxUnchecked className="" />
@@ -313,40 +302,7 @@ const RegisterAsAGuard = () => {
                 <div className="self-stretch relative leading-[24px] font-semibold">
                   Experience
                 </div>
-                {/* <div className="self-stretch flex flex-row items-center justify-start gap-4 text-sm text-components-button-component-defaultcolor font-base-base-normal">
-                  <div className="self-stretch flex-1 rounded-components-input-global-borderradiussm bg-gray-250 border-darkslategray border-[1px] border-solid flex flex-row items-center justify-start py-0 px-4">
-                    <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
-                      <img
-                        className="w-4 relative h-4"
-                        alt=""
-                        src="/clip-path-group10.svg"
-                      />
-                      <div className="relative leading-[22px] hidden">
-                        Prefix
-                      </div>
-                      <input
-                        className="[border:none] [outline:none] font-lg-normal text-sm bg-[transparent] flex-1 relative leading-[22px] text-darkgray text-left inline-block overflow-hidden text-ellipsis whitespace-nowrap h-[22px]"
-                        placeholder="Enter past working experience"
-                        type="text"
-                      />
-                      <div className="relative leading-[22px] text-right hidden">
-                        Suffix
-                      </div>
-                      <img
-                        className="w-4 relative h-4 overflow-hidden shrink-0 hidden"
-                        alt=""
-                        src="/icon--infocircleoutlined.svg"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-12 rounded-[75px] border-ripe-plum-50 border-[1px] border-dashed box-border h-12 overflow-hidden shrink-0 flex flex-col items-center justify-center p-2">
-                    <img
-                      className="w-[15.5px] relative h-[16.2px]"
-                      alt=""
-                      src="/.svg"
-                    />
-                  </div>
-                </div> */}
+              
                  <div className="self-stretch  min-w-[320px]  flex flex-row  h-[57px] items-center justify-start gap-4 text-sm text-components-button-component-defaultcolor font-base-base-normal">
       <div className="self-stretch flex-1 rounded-components-input-global-borderradiussm bg-gray-250 border-darkslategray border-[1px] border-solid flex flex-row items-center justify-start py-0 px-4">
         <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
@@ -360,8 +316,8 @@ const RegisterAsAGuard = () => {
             className="[border:none] [outline:none] font-lg-normal text-sm bg-[transparent] flex-1 relative leading-[22px] text-darkgray text-left inline-block overflow-hidden text-ellipsis whitespace-nowrap h-[22px]"
             placeholder="Enter past working experience"
             type="text"
-            value={fileName} // Display the file name in the input
-            readOnly // Prevent editing the input directly
+            value={formData.experience} // Display the file name in the input
+             // Prevent editing the input directly
           />
           <div className="relative leading-[22px] text-right hidden">Suffix</div>
           <img
@@ -371,22 +327,8 @@ const RegisterAsAGuard = () => {
           />
         </div>
       </div>
-      {/* <div
-        className="w-12 rounded-[75px] border-ripe-plum-50 border-[1px] border-dashed box-border h-12 overflow-hidden shrink-0 flex flex-col items-center justify-center p-2"
-        onClick={handleFileClick} // Trigger file input click
-      >
-        <img
-          className="w-[15.5px] cursor-pointer relative h-[16.2px]"
-          alt=""
-          src="/.svg"
-        />
-      </div> */}
-      {/* <input
-        id="fileInput"
-        type="file"
-        style={{ display: "none" }}
-        onChange={handleFileChange} // Handle file selection
-      /> */}
+     
+ 
     </div>
               </div>
               <div className="self-stretch flex flex-col items-start justify-start gap-2 min-w-[320px] z-[6]">
@@ -418,7 +360,7 @@ const RegisterAsAGuard = () => {
                 </div>
               </div>
             </div>
-            <button className="cursor-pointer [border:none] py-[15px] px-12 bg-ripe-plum-950 self-stretch shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg h-[59px] flex flex-row items-center justify-center box-border">
+            <button  onClick={handleSubmit} className="cursor-pointer [border:none] py-[15px] px-12 bg-ripe-plum-950 self-stretch shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg h-[59px] flex flex-row items-center justify-center box-border">
               <div className="relative text-base leading-[24px] font-lg-normal text-ripe-plum-50 text-center">
                 Submit
               </div>

@@ -265,7 +265,7 @@ const RegisterAsAGuard1 = () => {
         console.log("Response:", response.data);
     
         // Navigate to the next page if API call is successful
-        navigate("/home");
+        navigate("/register2",{state:response?.data});
       } catch (error) {
         // console.error("Error during API call:", error.response ? error.response.data : error.message);
         // Optionally, display an error message to the user, for example:
