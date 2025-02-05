@@ -90,18 +90,23 @@ const Home = () => {
 
             {/* Input Grid Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-              {/* Address Input */}
-              <div className="flex items-center text-[#9CA3AF] bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
-                <AiOutlineEnvironment className="text-[#9CA3AF] text-xl" />
-                <input
-                  type="text"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  placeholder="Address"
-                  className="w-full bg-transparent text-[#9CA3AF] border-none outline-none px-2"
-                />
-              </div>
+  {/* Address Input */}
+  <div className="flex items- text-[#9CA3AF] bg-gray-100  border border-darkslategray rounded-lg py-2 px-4 ">
+    <AiOutlineEnvironment className="text-[#9CA3AF] text-[22px] " />
+    <textarea
+      name="address"
+      value={formData.address}
+      onChange={handleChange}
+      placeholder="Address"
+      rows="1"
+      className="w-full bg-transparent text-[#9CA3AF] text-[16px] border-none outline-none px-2 resize-none overflow-hidden"
+      onInput={(e) => {
+        e.target.style.height = "auto";
+        e.target.style.height = e.target.scrollHeight + "px";
+      }}
+    />
+  </div>
+
 
               {/* Start Date Input */}
               {/* <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
@@ -119,47 +124,57 @@ const Home = () => {
               </div> */}
 
 
-<div className="flex justify-start items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
-  <AiOutlineCalendar className="text-[#9CA3AF] text-xl" />
+{/* <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 ">
+  <AiOutlineCalendar className="text-[#9CA3AF] text-[18px]" />
   <DatePicker
-      // showTimeSelect
+      showTimeSelect
   dateFormat="Pp"
       selected={startDate}
       onChange={(date) => setStartDate(date)}
-      className="mb-5 w-full ml-2 bg-transparent outline-none text-[#9CA3AF]  text-[16px] cursor-pointer"
+      className=" w-full ml-2 bg-transparent outline-none text-[14px] text-[#9CA3AF]   cursor-pointer"
     />
-</div>
-{/* <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
+</div> */}
+<div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
   <AiOutlineCalendar className="text-[#9CA3AF] text-xl" />
   <input
     type="datetime-local"
     name="startDate"
     value={formData.startDate}
     onChange={handleChange}
+    style={{
+      colorScheme:"dark"
+    }}
 
     className="w-full bg-transparent text-[#9CA3AF] border-none outline-none px-2 
                [&::-webkit-calendar-picker-indicator]:opacity-50 
                [&::-webkit-calendar-picker-indicator]:hover:opacity-100"
   />
-</div> */}
+</div>
 
 
-              {/* End Date Input */}
+              {/* End Date Input */}         
+
               <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
-                <AiOutlineClockCircle className="text-darkgray text-xl" />
-              
-                  <DatePicker
-     type="datetime-local"
-     
-      selected={endDate}
-      onChange={(date) => setEndDate(date)}
-      className="mb-5 w-full ml-2 bg-transparent outline-none text-[#9CA3AF]  text-[16px] cursor-pointer"
-    />
-              </div>
+  <AiOutlineCalendar className="text-[#9CA3AF] text-xl" />
+  <input
+    type="datetime-local"
+    name="endDate"
+    value={formData.endDate}
+    onChange={handleChange}
+    style={{
+      colorScheme:"dark"
+    }}
+
+    className="w-full bg-transparent text-[#9CA3AF] border-none outline-none px-2 
+               [&::-webkit-calendar-picker-indicator]:opacity-50 
+               [&::-webkit-calendar-picker-indicator]:hover:opacity-100"
+  />
+</div>
+
 
               {/* Service Type Input */}
-              <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
-                <AiOutlineAppstore className="text-darkgray text-xl" />
+              <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4  py-3">
+                <AiOutlineAppstore className="text-darkgray text-[18px]" />
                 <select
                   name="serviceType"
                   value={formData.serviceType}
@@ -167,7 +182,7 @@ const Home = () => {
                     colorScheme:"dark"
                   }}
                   onChange={handleChange}
-                  className="w-full bg-gray-100 text-[#9CA3AF] border-none outline-none px-2"
+                  className="w-full bg-gray-100 text-[#9CA3AF] border-none outline-none px-1"
                 >
                   <option value="" disabled>
                     Select Service Type
@@ -180,9 +195,8 @@ const Home = () => {
               </div>
 
               {/* Min Budget Input */}
-              <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px] relative">
-                <AiOutlineCreditCard className="text-darkgray text-xl mr-2" />
-                <span className="absolute left-12 text-[#9CA3AF] text-sm font-medium">
+              <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-5 py-3">
+                <span className=" text-[#9CA3AF] text-[18px] font-medium">
                   $
                 </span>
                 <input
@@ -191,14 +205,13 @@ const Home = () => {
                   value={formData.minBudget}
                   onChange={handleChange}
                   placeholder="Min. Budget"
-                  className="w-full bg-transparent text-[#9CA3AF] border-none outline-none pl-6" // Added padding-left
+                  className="w-full bg-transparent text-[#9CA3AF] border-none outline-none pl-3" // Added padding-left
                 />
               </div>
 
               {/* Max Budget Input */}
-              <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px] relative">
-                <AiOutlineCreditCard className="text-darkgray text-xl mr-2" />
-                <span className="absolute left-12 text-[#9CA3AF] text-sm font-medium">
+              <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-5  py-3">
+                <span className=" text-[#9CA3AF] text-[18px] font-medium">
                   $
                 </span>
                 <input
@@ -207,7 +220,7 @@ const Home = () => {
                   value={formData.maxBudget}
                   onChange={handleChange}
                   placeholder="Max. Budget"
-                  className="w-full bg-transparent text-[#9CA3AF] border-none outline-none pl-6" // Added padding-left
+                  className="w-full bg-transparent text-[#9CA3AF] border-none outline-none pl-3" // Added padding-left
                 />
               </div>
             </div>

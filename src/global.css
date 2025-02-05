@@ -114,3 +114,7 @@ input:-webkit-autofill:active {
   font-weight: bold;
   font-size: 0.944rem;
 }
+
+.react-datepicker__time-list-item:nth-child(even){
+  background-color: #534e4e;
+}

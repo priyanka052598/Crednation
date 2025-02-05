@@ -228,7 +228,7 @@ const FrameComponent = ({ className = "" }) => {
           alt=""
           src="/group.svg"
         />
-        <div className="relative leading-[22px]">
+        <div className="relative text-left pl-2 leading-[22px]">
           Your credentials are securely encrypted
         </div>
       </div>

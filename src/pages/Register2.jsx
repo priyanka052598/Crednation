@@ -3,7 +3,9 @@ import Footer from "../components/Footer";
 import { useLocation } from "react-router-dom";
 // import axios from "axios"; // Commented out for now
 import { useState } from "react";
-import { AiOutlineCreditCard } from "react-icons/ai";
+// import { AiOutlineCreditCard } from "react-icons/ai";
+import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
+
 
 const RegisterAsAGuard = () => {
   const location = useLocation();
@@ -20,6 +22,7 @@ const RegisterAsAGuard = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [selectedOptions, setSelectedOptions] = useState()
 
   // Validation function
   const validate = (name, value) => {
@@ -97,6 +100,30 @@ const RegisterAsAGuard = () => {
     document.getElementById("fileInput").click(); // Trigger file input click
   };
 
+
+  const options = [
+    "Access Control",
+    "Surveillance",
+    "Emergency Response",
+    "First Aid",
+    "Conflict Resolution",
+    "Physical Security",
+    "Report Writing",
+    "Customer Service",
+  ];
+
+  const toggleSelection = (label) => {
+    setSelectedOptions((prevSelected) => {
+      if (prevSelected.includes(label)) {
+        // If already selected, remove from the list
+        return prevSelected.filter(item => item !== label);
+      } else {
+        // Otherwise, add to the list
+        return [...prevSelected, label];
+      }
+    });
+  };
+
   return (
     <div className="w-full relative [background:linear-gradient(179.48deg,_#0e0e10,_#3e065f)] overflow-hidden flex flex-col items-start justify-start min-w-[360px] text-left text-base text-ripe-plum-50 font-lg-normal">
       <Header />
@@ -137,11 +164,12 @@ const RegisterAsAGuard = () => {
                   <input className="hidden" type="file" id="file-163:2655" />
                 </div>
               </div>
+              {/* `Skills & Expertise */}
               <div className="self-stretch flex flex-col items-start justify-start gap-2 min-w-[320px] z-[1]">
-                <div className="self-stretch relative leading-[24px] font-semibold">{`Skills & Expertise *`}</div>
-                <div className="self-stretch flex flex-row items-start justify-start flex-wrap content-start gap-4 text-sm text-darkgray">
+                <div className="self-stretch relative leading-[24px] font-semibold">{`Skills & Expertise `}</div>
+                {/* <div className="self-stretch flex flex-row items-start justify-start flex-wrap content-start gap-4 text-sm text-darkgray">
                   <div className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden flex flex-row items-center justify-start flex-wrap content-center py-0 pl-4 pr-2 gap-2.5 min-w-[320px]">
-                    <input className="w-5 h-4" type="checkbox" />
+                    <input className="w-5 h-4 bg-red-600" type="checkbox" />
                     <div className="flex flex-row items-center justify-center py-1.5 px-0">
                       <div className="relative leading-[22px]">
                         Access Control
@@ -203,7 +231,33 @@ const RegisterAsAGuard = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
+       
+
+
+  <div className="self-stretch flex flex-row items-start justify-start flex-wrap content-start gap-4 text-sm text-darkgray">
+    {options.map((label, index) => (
+      <div onClick={()=>{
+        toggleSelection(label)
+      }}
+        key={index}
+        className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden flex flex-row items-center justify-start flex-wrap content-center py-0 pl-4 pr-2 gap-2.5 min-w-[320px]"
+      >
+          {selectedOptions.includes(label) ? (
+            <ImCheckboxChecked className=" bg-pur" />
+          ) : (
+            <ImCheckboxUnchecked className="" />
+          )}
+        
+        {/* <input className="w-5 h-4" type="checkbox" /> */}
+        <div className="flex flex-row items-center justify-center py-1.5 px-0">
+          <div className="relative leading-[22px]">{label}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+
               </div>
               <div className="self-stretch flex flex-col items-start justify-start gap-2 min-w-[320px] z-[2]">
                 <div className="self-stretch relative leading-[24px] font-semibold">
@@ -214,45 +268,44 @@ const RegisterAsAGuard = () => {
                   placeholder="Write a bio about yourself"
                 />
               </div>
-              <div className="w-[786.6px] absolute !m-[0] top-[0px] right-[0.4px] text-xs leading-[20px] text-right inline-block z-[3]">
-                * Indicates mandatory fields
-              </div>
+             
               <div className="self-stretch flex flex-col items-start justify-start gap-2 min-w-[320px] z-[4]">
                 <div className="self-stretch relative leading-[24px] font-semibold">
                   Rate
                 </div>
-                <div className="self-stretch flex flex-row items-center justify-start flex-wrap content-center gap-size-base-size text-sm text-components-button-component-defaultcolor font-base-base-normal">
-                  <div className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden flex flex-row items-center justify-start py-0  min-w-[320px]">
-                    <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px] relative">
-                                  <AiOutlineCreditCard className="text-darkgray text-xl mr-2" />
-                                  <span className="absolute left-12 text-[#9CA3AF] text-sm font-medium">
+                <div className="self-stretch w-full flex flex-row items-center justify-start content-center gap-size-base-size text-sm text-components-button-component-defaultcolor font-base-base-normal">
+                
+                  <div className=" rounded w-1/2 flex items-center px-4  bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden  ">
+                                  <div className="  text-[#9CA3AF] text-[17px] font-medium">
                                     $
-                                  </span>
+                                  </div>
+                                  <div className="ml-2 w-full">
                                   <input
                                     type="number"
                                     name="minBudget"
                                     value={formData.minBudget}
                                     onChange={handleChange}
                                     placeholder="Min. Budget"
-                                    className="w-full bg-transparent text-[#9CA3AF] border-none outline-none pl-6" // Added padding-left
+                                    className="w-full bg-transparent text-[#9CA3AF] border-none outline-none " // Added padding-left
                                   />
-                                </div>
+                                  </div>
+                               
                   </div>
-                  <div className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden flex flex-row items-center justify-start py-0  min-w-[320px]">
-                    <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px] relative">
-                                  <AiOutlineCreditCard className="text-darkgray text-xl mr-2" />
-                                  <span className="absolute left-12 text-[#9CA3AF] text-sm font-medium">
+                  <div className=" rounded w-1/2 flex items-center px-4  bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden  ">
+                                  <div className="  text-[#9CA3AF] text-[17px] font-medium">
                                     $
-                                  </span>
+                                  </div>
+                                  <div className="ml-2 w-full">
                                   <input
                                     type="number"
-                                    name="minBudget"
-                                    value={formData.minBudget}
+                                    name="maxBudget"
+                                    value={formData.maxBudget}
                                     onChange={handleChange}
-                                    placeholder="Min. Budget"
-                                    className="w-full bg-transparent text-[#9CA3AF] border-none outline-none pl-6" // Added padding-left
+                                    placeholder="Max. Budget"
+                                    className="w-full bg-transparent text-[#9CA3AF] border-none outline-none " // Added padding-left
                                   />
-                                </div>
+                                  </div>
+                               
                   </div>
                 </div>
               </div>
@@ -294,7 +347,7 @@ const RegisterAsAGuard = () => {
                     />
                   </div>
                 </div> */}
-                 {/* <div className="self-stretch flex flex-row items-center justify-start gap-4 text-sm text-components-button-component-defaultcolor font-base-base-normal">
+                 <div className="self-stretch  min-w-[320px]  flex flex-row  h-[57px] items-center justify-start gap-4 text-sm text-components-button-component-defaultcolor font-base-base-normal">
       <div className="self-stretch flex-1 rounded-components-input-global-borderradiussm bg-gray-250 border-darkslategray border-[1px] border-solid flex flex-row items-center justify-start py-0 px-4">
         <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
           <img
@@ -318,7 +371,7 @@ const RegisterAsAGuard = () => {
           />
         </div>
       </div>
-      <div
+      {/* <div
         className="w-12 rounded-[75px] border-ripe-plum-50 border-[1px] border-dashed box-border h-12 overflow-hidden shrink-0 flex flex-col items-center justify-center p-2"
         onClick={handleFileClick} // Trigger file input click
       >
@@ -327,14 +380,14 @@ const RegisterAsAGuard = () => {
           alt=""
           src="/.svg"
         />
-      </div>
-      <input
+      </div> */}
+      {/* <input
         id="fileInput"
         type="file"
         style={{ display: "none" }}
         onChange={handleFileChange} // Handle file selection
-      />
-    </div> */}
+      /> */}
+    </div>
               </div>
               <div className="self-stretch flex flex-col items-start justify-start gap-2 min-w-[320px] z-[6]">
                 <div className="self-stretch relative leading-[24px] font-semibold">

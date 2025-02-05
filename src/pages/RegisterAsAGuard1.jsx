@@ -259,25 +259,25 @@ const RegisterAsAGuard1 = () => {
   };
 
   return (
-    <div className="w-full relative [background:linear-gradient(179.48deg,_#0e0e10,_#3e065f)] overflow-hidden flex flex-col items-start justify-start min-w-[360px] text-left text-base text-ripe-plum-50 font-lg-normal">
+    <div className="w-full relative [background:linear-gradient(179.48deg,_#0e0e10,_#3e065f)] overflow-hidden flex flex-col items-center justify-start min-w-[300px] text-left text-base text-ripe-plum-50 font-lg-normal">
       <Header />
-      <div className="self-stretch bg-gradient-to-b from-[#19191C] to-[#22142C] flex flex-row items-start justify-start flex-wrap content-start py-16 px-8 gap-8 text-11xl text-components-button-component-primarycolor">
-        <div className="flex-1 flex flex-col items-start justify-start gap-8 min-w-[280px]">
-          <form onSubmit={handleSubmit} className="self-stretch flex flex-col items-start justify-start gap-12 text-base">
-            <div className="flex flex-col gap-3">
+      <div className=" bg-gradient-to-b from-[#19191C] to-[#22142C] flex flex-row items-start justify-start flex-wrap content-start py-10 px-8 gap-4 text-11xl text-components-button-component-primarycolor">
+        <div className="flex-col flex  items-center justify-start g min-w-[280px]">
+          <form onSubmit={handleSubmit} className="self-stretch flex flex-col items-start justify-start gap-7 text-base">
+            <div className="flex flex-col ">
               <div className="self-stretch relative text-[30px] font-semibold">Guard Registration</div>
               <img className="w-[100px] relative h-1" alt="" src="/vector2.svg" />
             </div>
             {Object.keys(formData).map((field, index) => (
-              <div key={index} className="self-stretch flex flex-col items-start justify-start gap-2">
+              <div key={index} className="self-stretch flex flex-col items-start justify-start gap-1">
                 <label className="self-stretch relative leading-[24px] font-semibold">
-                  {field.charAt(0).toUpperCase() + field.slice(1)} *
+                  {field.charAt(0).toUpperCase() + field.slice(1)} 
                 </label>
-                <div className={`self-stretch rounded-components-input-global-borderradiussm bg-gray-250 border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-4 text-sm ${errors[field] ? "border-red-500" : "border-darkslategray"}`}>
+                <div className={`self-stretch rounded-components-input-global-borderradiussm bg-gray-250 border-[1px] border-solid box-border h-[50px] flex flex-row items-center justify-start py-0 px-4 text-sm ${errors[field] ? "border-red-500" : "border-darkslategray"}`}>
                 <input
   className="peer bg-transparent outline-none font-lg-normal text-sm flex-1 leading-[22px] text-darkgray text-left autofill:bg-red-300"
   placeholder={`Enter your ${field}`}
-  type={field === "password" ? "password" : field === "email" ? "email" : "text"}
+  type={field === "password" ? "password" : field === "email" ? "email" : field==="phoneNumber" ?"number" :"text"}
   name={field}
   value={formData[field]}
   onChange={handleChange}
@@ -286,7 +286,6 @@ const RegisterAsAGuard1 = () => {
                 {errors[field] && <p className="text-red-500 text-xs">{errors[field]}</p>}
               </div>
             ))}
-            <p className="w-full text-xs leading-[20px] text-right">* Indicates mandatory fields</p>
             <button type="submit" className="cursor-pointer [border:none] py-[15px] px-12 bg-ripe-plum-950 self-stretch shadow rounded-lg h-[59px] flex flex-row items-center justify-center">
               <div className="relative text-base leading-[24px] font-lg-normal text-ripe-plum-50 text-center">Next</div>
             </button>
