@@ -212,6 +212,8 @@ import { FaDollarSign } from "react-icons/fa6";
 import { FaClock } from "react-icons/fa";
 import { RiGraduationCapFill } from "react-icons/ri";
 import "../../src/global.css"
+import axios from 'axios'; // Add axios for making API calls
+
 
 const RegisterAsAGuard1 = () => {
   const navigate = useNavigate();
@@ -246,18 +248,36 @@ const RegisterAsAGuard1 = () => {
     setErrors({ ...errors, [name]: validate(name, value) });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const newErrors = {};
     Object.keys(formData).forEach((key) => {
       newErrors[key] = validate(key, formData[key]);
     });
-    setErrors(newErrors);
+    // setErrors(newErrors);
     if (!Object.values(newErrors).some((error) => error)) {
-      navigate("/register2", { state: formData });
+      try {
+        // Send data to API
+        const response = await axios.post(
+          "http://185.142.34.143:5001/execute-flow/flow_284908e8-a001-43a1-bf25-e1f74e06f5af",
+          formData
+        );
+        console.log("Response:", response.data);
+    
+        // Navigate to the next page if API call is successful
+        navigate("/home");
+      } catch (error) {
+        // console.error("Error during API call:", error.response ? error.response.data : error.message);
+        // Optionally, display an error message to the user, for example:
+        alert("An error occurred while submitting the form. Please try again.");
+      }
+    } else {
+      // Handle the case where there are form validation errors
+      console.log("Validation errors:", newErrors);
+      // Optionally, display validation error messages to the user
     }
+    
   };
-
   return (
     <div className="w-full relative [background:linear-gradient(179.48deg,_#0e0e10,_#3e065f)] overflow-hidden flex flex-col items-center justify-start min-w-[300px] text-left text-base text-ripe-plum-50 font-lg-normal">
       <Header />

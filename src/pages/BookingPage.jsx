@@ -5,6 +5,8 @@ import { MdOutlineCalendarToday, MdOutlineLocationOn } from "react-icons/md";
 import { FaRegClock } from "react-icons/fa6";
 import { LuPersonStanding } from "react-icons/lu";
 import { CgSandClock } from "react-icons/cg";
+import { FaCircleCheck } from "react-icons/fa6";
+
 import "../../src/global.css"
 
 
@@ -132,7 +134,7 @@ const BookingPage = () => {
                   <div className="self-stretch flex flex-row items-center justify-start text-sm text-components-input-global-colortext font-base-base-normal">
                     <div className="flex-1 rounded-components-input-global-borderradiussm bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-4 min-w-[256px]">
                       <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
-                      <MdOutlineLocationOn className="text-[16px] text-[#7C7C88]"/>
+                      <MdOutlineLocationOn className="text-[17px] text-[#7C7C88]"/>
                         <div className="relative leading-[22px] hidden">
                           Prefix
                         </div>
@@ -142,7 +144,6 @@ const BookingPage = () => {
                         <div className="relative leading-[22px] text-right hidden">
                           Suffix
                         </div>
-                        <MdOutlineCalendarToday className="text-[16px] text-[#7C7C88]"/>
                       </div>
                     </div>
                   </div>
@@ -153,17 +154,16 @@ const BookingPage = () => {
                   </div>
                   <div className="self-stretch rounded-components-input-global-borderradiussm bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-4 min-w-[256px] text-sm text-components-input-global-colortext font-base-base-normal">
                     <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
-                    <MdOutlineCalendarToday className="text-[16px] text-[#7C7C88]"/>
+                    <FaCircleCheck className="text-[15px] text-[#7C7C88]"/>
                       <div className="relative leading-[22px] hidden">
                         Prefix
                       </div>
                       <div className="flex-1 relative leading-[22px] font-lg-normal text-darkgray inline-block overflow-hidden text-ellipsis whitespace-nowrap h-[22px]">
-                        Write extra information you want to add
+                        Write extra information 
                       </div>
                       <div className="relative leading-[22px] text-right hidden">
                         Suffix
                       </div>
-                      <MdOutlineCalendarToday className="text-[16px] text-[#7C7C88]"/>
                     </div>
                   </div>
                 </div>

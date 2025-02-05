@@ -96,10 +96,12 @@ const Home = () => {
     <textarea
       name="address"
       value={formData.address}
+      
       onChange={handleChange}
+
       placeholder="Address"
       rows="1"
-      className="w-full bg-transparent text-[#9CA3AF] text-[16px] border-none outline-none px-2 resize-none overflow-hidden"
+      className="w-full bg-transparent text-[#9CA3AF] pt-1 text-[15px] border-none outline-none px-2 resize-none overflow-hidden"
       onInput={(e) => {
         e.target.style.height = "auto";
         e.target.style.height = e.target.scrollHeight + "px";

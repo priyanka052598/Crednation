@@ -87,4 +87,5 @@ module.exports = {
   fontFamily: {
     sf: ['SF Display', 'sans-serif'],
   },
+  darkMode: 'class',
 };
