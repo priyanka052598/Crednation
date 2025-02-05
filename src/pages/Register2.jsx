@@ -1,11 +1,13 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // import axios from "axios"; // Commented out for now
 import { useState } from "react";
 // import { AiOutlineCreditCard } from "react-icons/ai";
 import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
 import axios from "axios";
+import { FaCircleCheck } from "react-icons/fa6";
+
 
 
 const RegisterAsAGuard = () => {
@@ -26,6 +28,8 @@ const RegisterAsAGuard = () => {
 
   const [errors, setErrors] = useState({});
   const [selectedOptions, setSelectedOptions] = useState()
+  const navigate = useNavigate();
+
 
   // Validation function
   const validate = (name, value) => {
@@ -138,7 +142,7 @@ const RegisterAsAGuard = () => {
     // Build the combined data object with the required keys
     const dataToSend = {
       guardID: register1Data.guardID || "G1303", // Use guardID from register1Data or default to G1303
-      skills: formData.skills, 
+      skills: selectedOptions.map((item)=> item), 
       summary: formData.profileSummary,
       minRate: formData.minRate,
       maxRate: formData.maxRate,
@@ -156,10 +160,10 @@ const RegisterAsAGuard = () => {
       validationErrors[key] = validate(key, formData[key]);
     });
   
-    if (Object.values(validationErrors).some((err) => err !== "")) {
-      console.log("Validation errors:", validationErrors);
-      return;
-    }
+    // if (Object.values(validationErrors).some((err) => err !== "")) {
+    //   console.log("Validation errors:", validationErrors);
+    //   return;
+    // }
   
     try {
       // Send data to API
@@ -174,11 +178,55 @@ const RegisterAsAGuard = () => {
     } catch (error) {
       alert("An error occurred while submitting the form. Please try again.");
     }
+
+    // Show the success popup after the form is submitted
+     setIsPopupVisible(true);
+  
   };
+
+
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  
+  //   const dataToSend = {
+  //     guardID: register1Data.guardID || "G1303",
+  //     skills: selectedOptions.map((item) => item),
+  //     summary: formData.profileSummary,
+  //     minRate: formData.minRate,
+  //     maxRate: formData.maxRate,
+  //     experience: formData.experience,
+  //     additionalInfo: formData.additionalInfo,
+  //     address: formData.address || "address of guard",
+  //     createdDate: new Date().toISOString(),
+  //     updatedDate: new Date().toISOString(),
+  //   };
+  
+  //   let validationErrors = {};
+  
+  //   // Validate the form data
+  //   Object.keys(formData).forEach((key) => {
+  //     validationErrors[key] = validate(key, formData[key]);
+  //   });
+  
+  //   try {
+  //     const response = await axios.post(
+  //       "http://185.142.34.143:5001/execute-flow/flow_57120abf-fb09-45ce-afdf-2a2c66256a1f",
+  //       dataToSend
+  //     );
+  //     console.log("Response:", response.data);
+  
+  //     // Show the success popup after the form is submitted
+  //     setIsPopupVisible(true);
+  //   } catch (error) {
+  //     alert("An error occurred while submitting the form. Please try again.");
+  //   }
+  // };
+  
   
 
   return (
-    <div className="w-full relative [background:linear-gradient(179.48deg,_#0e0e10,_#3e065f)] overflow-hidden flex flex-col items-start justify-start min-w-[360px] text-left text-base text-ripe-plum-50 font-lg-normal">
+    <div className="w-full relative [background:linear-gradient(179.48deg,_#0e0e10,_#3e065f)] overflow-hidden flex flex-col items-start justify-start min-w-[340px] text-left text-base text-ripe-plum-50 font-lg-normal">
       <Header />
       <div className="self-stretch flex flex-row items-start justify-center flex-wrap content-start py-16 px-8 gap-8 text-11xl text-components-button-component-primarycolor">
         <div className="flex-1 flex flex-col items-start justify-start gap-8 min-w-[320px]">
@@ -366,6 +414,123 @@ const RegisterAsAGuard = () => {
               </div>
             </button>
           </div>
+
+          {/* {isPopupVisible && (
+  <div className="popup-overlay ">
+    <div className="popup bg-[#18181B]">
+      <div className="popup-header flex">
+        <div><FaCircleCheck/></div>
+        <div>
+        <h3 className="text-white text-[29px]">Registration Successful</h3>
+        <span className="font-normal">Thankyou for your interest</span>
+
+        </div>
+      </div>
+      <div className="popup-body">
+        <p>Your registration has been successfully submitted.</p>
+      </div>
+      <div className="popup-footer w-full">
+        <button  onClick={() => setIsPopupVisible(false)}>Close</button>
+      </div>
+    </div>
+  </div>
+)} */}
+
+
+
+{isPopupVisible && (
+  <div className="popup-overlay" style={{
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    right: '0',
+    bottom: '0',
+    backgroundColor: "rgba(0, 0, 0, 0.9)", /* Semi-transparent black */
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: '9999',
+  }}>
+    <div className="popup" style={{
+      backgroundColor: '#18181B',
+      padding: '30px',
+      borderRadius: '8px',
+      width: '80%',
+      maxWidth: '400px',
+      color: 'white',
+      boxShadow: '0 4px 10px rgba(0, 0, 0, 0.3)',
+      // marginRight:"6px"
+    }}>
+      <div className="popup-header flex flex-col justify-center items-center" style={{
+        // display: 'flex',
+        alignItems: 'center',
+        marginBottom: '20px',
+      }}>
+        <div className={`w-12 h-12  rounded-full bg-gray-400 flex justify-center items-center`} style={{ marginRight: '18px' }}>
+          <FaCircleCheck className= "text-[#3E065F]" />
+        </div>
+        <div>
+          <h3 style={{
+            fontSize: '29px',
+            margin: '0',
+          }} className="text-white text-center py-5">Registration Successful</h3>
+          <span  style={{
+            fontSize: '16px',
+            fontWeight: 'normal',
+            display: 'block',
+            textAlign:"center",
+            marginTop: '5px',
+          }}>Thank you for your interest</span>
+        </div>
+      </div>
+      <div className="popup-body">
+        <p className="text-[20px] my-7 text-gray-150 text-center font-normal">Your application has been successfully submitted. Our team will review your information and contact you within 2-3 business days.</p>
+      </div>
+      <div className="popup-footer" style={{
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: '20px',
+      }}>
+        {/* <button onClick={() => 
+        setIsPopupVisible(false)
+      }
+         style={{
+          padding: '15px 20px',
+          width:"100%",
+          backgroundColor: "#3E065F",
+          color: 'white',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          fontSize: '16px',
+        }}>
+          Got it thanks!
+        </button> */}
+
+<button
+              onClick={() => {
+             
+                navigate('/home'); // Navigate to /home
+                setIsPopupVisible(false);
+              }}
+              style={{
+                padding: '15px 20px',
+                width:"100%",
+                backgroundColor: "#3E065F",
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                fontSize: '16px',
+              }}>
+              Got it thanks!
+            </button>
+      </div>
+    </div>
+  </div>
+)}
+
         </div>
         <div className="flex-1 flex flex-col items-start justify-center gap-8 min-w-[280px] max-w-[480px] text-xl">
           <div className="self-stretch rounded-lg [background:linear-gradient(180deg,_#18181b,_#2c0c40_57.5%,_#3e065f)] flex flex-col items-start justify-center p-8 gap-size-base-size">

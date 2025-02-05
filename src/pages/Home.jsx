@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Testimonials from "../components/testimonial";
@@ -17,12 +17,18 @@ import {
   AiOutlineDollarCircle,
   AiOutlineCustomerService,
 } from "react-icons/ai";
-
+import Select from 'react-select';
 import "../../src/global.css"
+import { useNavigate } from "react-router-dom";
+
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 const Home = () => {
+  const navigate = useNavigate()
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date())
+  const [selectedOption, setSelectedOption] = useState(null);
   const [formData, setFormData] = useState({
     address: "",
     startDate: "",
@@ -32,18 +38,7 @@ const Home = () => {
     maxBudget: "",
   });
 
-  const customStyles = {
-    '.react-datepicker__month': {
-      backgroundColor: '#3E065F',
-    },
-    '.react-datepicker__day--selected': {
-      backgroundColor: '#3E065F',
-      color: 'white',
-    },
-    '.react-datepicker__day:hover': {
-      backgroundColor: '#ddd',
-    }
-  };
+
 
 
   const handleChange = (e) => {
@@ -66,11 +61,52 @@ const Home = () => {
     console.log("Form submitted:", formData);
   };
 
+  const ExampleCustomInput = forwardRef(
+    ({ value, onClick, className }, ref) => (
+      <button className={className} onClick={onClick} ref={ref}>
+        {value}
+      </button>
+    ),
+  );
 
 
 
-  
 
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' },
+  ];
+  const defaultOption = options[0];
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: "#252538", // Background color of the input box
+      color: "white", // Change text color for visibility
+      fontSize:"16px",
+      borderColor:"transparent",
+      width:window.innerWidth > 500 ? "310px":"280px",
+      border: "none", // Remove border if needed
+    boxShadow: "none", // Remove focus outline
+    }),
+
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: "#252538", // Background color of dropdown menu
+      fontSize: "16px",
+      color:"white"
+    }),
+    option: (provided, { isFocused, isSelected }) => ({
+      ...provided,
+      backgroundColor: isSelected ? "#252538" : isFocused ? "#3e065f" : "#252538",
+      color: "white",
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "white", // Ensure selected text remains white
+    }),
+  };
 
   return (
     <div className="w-full relative [background:linear-gradient(179.41deg,_#18181b,_#3e065f)] overflow-hidden flex flex-col items-start justify-start min-w-[320px] text-left text-19xl text-bunker-50 font-lg-normal">
@@ -79,28 +115,27 @@ const Home = () => {
         <div className="flex-1 flex   flex-  items-start justify-start gap-8 min-w-[256px]">
           <form onSubmit={handleSubmit} className="w-full max-w-3xl mx-auto">
             <div className="self-stretch  flex flex-col items-start justify-start gap-4">
-              <div className={` ${ window.innerWidth<500?"text-[30px]" : "text-2xl"} font-semibold leading-[46px]`}>
+              <div className={` ${window.innerWidth < 500 ? "text-[30px]" : "text-2xl"} font-semibold leading-[46px]`}>
                 Find Trusted Security Guards Anytime, Anywhere
               </div>
-              <div className={` ${ window.innerWidth<500?"text-[19px]" : "text-xl"} relative  leading-[28px] text-bunker-100`}>
+              <div className={` ${window.innerWidth < 500 ? "text-[19px]" : "text-xl"} relative  leading-[28px] text-bunker-100`}>
                 Connect with verified security professionals for your business
                 or event needs. Available 24/7, nationwide coverage.
               </div>
             </div>
 
             {/* Input Grid Layout */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2  gap-4 mt-6">
   {/* Address Input */}
-  <div className="flex items- text-[#9CA3AF] bg-gray-100  border border-darkslategray rounded-lg py-2 px-4 ">
-    <AiOutlineEnvironment className="text-[#9CA3AF] text-[22px] " />
+  <div className="flex items-center text-[#9CA3AF] h-[40px] bg-gray-100 border  border-darkslategray rounded-lg py-2 px-4">
+    <AiOutlineEnvironment className="text-[#9CA3AF] text-[22px]" />
     <textarea
       name="address"
       value={formData.address}
       onChange={handleChange}
-      
       placeholder="Address"
       rows="1"
-      className="w-full bg-transparent text-[#9CA3AF] pt-1 text-[15px] border-none outline-none px-2 resize-none overflow-hidden"
+      className="w-full bg-transparent text-[16px] text-[#9CA3AF] border-none outline-none px-2 resize-none overflow-hidden text-left"
       onInput={(e) => {
         e.target.style.height = "auto";
         e.target.style.height = e.target.scrollHeight + "px";
@@ -109,101 +144,63 @@ const Home = () => {
   </div>
 
 
-              {/* Start Date Input */}
-              {/* <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
-                <AiOutlineCalendar className="text-darkgray text-xl" />
-                <input
-                  type="datetime-local"
-                  name="startDate"
-                  value={formData.startDate}
-                  onChange={handleChange}
-                  className="w-full bg-transparent text-darkgray border-none outline-none px-2 [&::-webkit-calendar-picker-indicator] [&::-webkit-calendar-picker-indicator]:hover:bg-gray-300 [&::-webkit-calendar-picker-indicator]:rounded [&::-webkit-calendar-picker-indicator]:p-1"
-                  style={{
-                    colorScheme: "dark",
-                  }}
-                />
-              </div> */}
 
 
-{/* <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 ">
-  <AiOutlineCalendar className="text-[#9CA3AF] text-[18px]" />
-  <DatePicker
-      showTimeSelect
-  dateFormat="Pp"
+
+
+
+
+
+       
+
+
+              {/* End Date Input */}
+
+              <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[60px] md:h-[57px]">
+                <AiOutlineCalendar className="text-[#9CA3AF]  text-xl" />
+                  <DatePicker
+      customInput={<ExampleCustomInput className="example-custom-input text-left text-[16px] text-[#9ca3af] bg-transparent pl-4 w-[280px] h-[50px] pt-[-2px]"  />}
+      selected={endDate}
+                    onChange={(date) => setEndDate(date)}
+                    dateFormat="yyyy-MM-dd HH:mm"
+                    showTimeSelect
+                    // className="bg-red-300 pt-[-4px] text-[16px] text-[#9CA3AF] flex-1 outline-none w-full"
+                    calendarClassName="custom-calendar" // Apply custom styles
+                  />
+              </div>
+
+              <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[60px] md:h-[57px]">
+                <AiOutlineCalendar className="text-[#9CA3AF]  text-xl" />
+                  <DatePicker
+      customInput={<ExampleCustomInput className="example-custom-input text-left text-[16px] text-[#9ca3af] bg-transparent pl-4 w-[280px] h-[50px] pt-[-2px]"  />}
       selected={startDate}
-      onChange={(date) => setStartDate(date)}
-      className=" w-full ml-2 bg-transparent outline-none text-[14px] text-[#9CA3AF]   cursor-pointer"
-    />
-</div> */}
-<div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
-  <AiOutlineCalendar className="text-[#9CA3AF] text-xl" />
-  {/* <input
-    type="datetime-local"
-    name="startDate"
-    value={formData.startDate}
-    onChange={handleChange}
-    style={{
-      colorScheme:"dark"
-    }}
-
-    className="w-full bg-transparent text-[#9CA3AF] border-none outline-none px-2 
-               [&::-webkit-calendar-picker-indicator]:opacity-50 
-               [&::-webkit-calendar-picker-indicator]:hover:opacity-100"
-  /> */}
-    <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
-      <DatePicker
-        selected={endDate}
-        onChange={(date) => setEndDate(date)}
-        dateFormat="yyyy-MM-dd HH:mm"
-        showTimeSelect
-        className="bg-transparent text-[#9CA3AF] outline-none w-full"
-        calendarClassName="custom-calendar" // Apply custom styles
-      />
-    </div>
-</div>
-
-
-              {/* End Date Input */}         
-
-              <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
-  <AiOutlineCalendar className="text-[#9CA3AF] text-xl" />
-  <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4 h-[50px] md:h-[57px]">
-      <DatePicker
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-        dateFormat="yyyy-MM-dd HH:mm"
-        showTimeSelect
-        className="bg-transparent text-[#9CA3AF] outline-none w-full"
-        calendarClassName="custom-calendar" // Apply custom styles
-      />
-    </div>
-</div>
+                    onChange={(date) => setStartDate(date)}
+                    dateFormat="yyyy-MM-dd HH:mm"
+                    showTimeSelect
+                    // className="bg-red-300 pt-[-4px] text-[16px] text-[#9CA3AF] flex-1 outline-none w-full"
+                    calendarClassName="custom-calendar" // Apply custom styles
+                  />
+              </div>
 
 
               {/* Service Type Input */}
-              <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4  py-3">
+              <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4  h-[35px] py-3">
                 <AiOutlineAppstore className="text-darkgray text-[18px]" />
-                <select
-                  name="serviceType"
-                  value={formData.serviceType}
-                  style={{
-                    colorScheme:"dark"
-                  }}
-                  onChange={handleChange}
-                  className="w-full bg-gray-100 text-[#9CA3AF] border-none outline-none px-1"
-                >
-                  <option value="" disabled>
-                    Select Service Type
-                  </option>
-                  <option value="Security Guard">Security Guard</option>
-                  <option value="Event Guard">Event Guard</option>
-                  <option value="Patrol Guard">Patrol Guard</option>
-                  <option value="VIP Protection">VIP Protection</option>
-                </select>
+
+                <Select
+                isSearchable={false}
+        defaultValue={selectedOption}
+        onChange={setSelectedOption}
+        options={options}
+        styles={customStyles}
+      />
+
+                
+               
               </div>
 
               {/* Min Budget Input */}
-              <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-5 py-3">
+              <div className="flex items-center bg-gray-100 border border-darkslategray h-[35px] rounded-lg px-5 py-3">
                 <span className=" text-[#9CA3AF] text-[18px] font-medium">
                   $
                 </span>
@@ -213,12 +210,12 @@ const Home = () => {
                   value={formData.minBudget}
                   onChange={handleChange}
                   placeholder="Min. Budget"
-                  className="w-full bg-transparent text-[#9CA3AF] border-none outline-none pl-3" // Added padding-left
+                  className="w-full bg-transparent text-[16px] text-[#9CA3AF] border-none outline-none pl-3" // Added padding-left
                 />
               </div>
 
               {/* Max Budget Input */}
-              <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-5  py-3">
+              <div className="flex items-center bg-gray-100 border border-darkslategray h-[35px] rounded-lg px-5  py-3">
                 <span className=" text-[#9CA3AF] text-[18px] font-medium">
                   $
                 </span>
@@ -228,13 +225,16 @@ const Home = () => {
                   value={formData.maxBudget}
                   onChange={handleChange}
                   placeholder="Max. Budget"
-                  className="w-full bg-transparent text-[#9CA3AF] border-none outline-none pl-3" // Added padding-left
+                  className="w-full bg-transparent text-[16px] text-[#9CA3AF] border-none outline-none pl-3" // Added padding-left
                 />
               </div>
             </div>
 
             {/* Submit Button */}
             <button
+              onClick={() => {
+                navigate("/search")
+              }}
               type="submit"
               className="w-full h-12 md:h-14 mt-4 md:mt-6 bg-ripe-plum-950  transition-all duration-300 ease-in-out rounded-lg text-base text-white font-semibold p-3 md:p-4"
             >
@@ -244,10 +244,10 @@ const Home = () => {
         </div>
 
         <img
-  className="hidden md:block flex-1 rounded-lg max-w-full md:max-w-[560px] overflow-hidden h-auto md:h-[548px] object-cover min-w-[256px]"
-  alt=""
-  src="/image-1-1@2x.png"
-/>
+          className="hidden md:block flex-1 rounded-lg max-w-full md:max-w-[560px] overflow-hidden h-auto md:h-[548px] object-cover min-w-[256px]"
+          alt=""
+          src="/image-1-1@2x.png"
+        />
 
       </div>
 

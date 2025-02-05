@@ -213,6 +213,7 @@ import { FaClock } from "react-icons/fa";
 import { RiGraduationCapFill } from "react-icons/ri";
 import "../../src/global.css"
 import axios from 'axios'; // Add axios for making API calls
+import { toast } from "react-toastify";
 
 
 const RegisterAsAGuard1 = () => {
@@ -269,8 +270,10 @@ const RegisterAsAGuard1 = () => {
       } catch (error) {
         // console.error("Error during API call:", error.response ? error.response.data : error.message);
         // Optionally, display an error message to the user, for example:
-        alert("An error occurred while submitting the form. Please try again.");
+        // alert("An error occurred while submitting the form. Please try again.");
+        toast.error("Please fill all fields properly")
       }
+
     } else {
       // Handle the case where there are form validation errors
       console.log("Validation errors:", newErrors);

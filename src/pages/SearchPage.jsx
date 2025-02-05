@@ -6,12 +6,15 @@ import { Link } from "react-router-dom";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa6";
 import "../../src/global.css"
+import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
 
 
 
 
 const SearchPage = () => {
   const navigate = useNavigate();
+  const [selectedOptions, setSelectedOptions] = useState()
+
 
   const onButtonContainerClick2 = useCallback(() => {
     // Please sync "Profile page" to the project
@@ -19,6 +22,20 @@ const SearchPage = () => {
 
   const [showFilter, setShowFilter] = useState(false
   )
+
+  
+  const toggleSelection = (label) => {
+    setSelectedOptions((prevSelected = []) => {
+      if (prevSelected.includes(label)) {
+        // If already selected, remove from the list
+        return prevSelected.filter(item => item !== label);
+      } else {
+        // Otherwise, add to the list
+        return [...prevSelected, label];
+      }
+    });
+  };
+  
 
 
   const guards = [
@@ -87,6 +104,18 @@ const SearchPage = () => {
       hourlyRate: 38,
       profileLink: "/profile/emily",
     },
+  ];
+
+
+  const options = [
+    "Access Control",
+    "Surveillance",
+    "Emergency Response",
+    "First Aid",
+    "Conflict Resolution",
+    "Physical Security",
+    "Report Writing",
+    "Customer Service",
   ];
   
   
@@ -426,7 +455,7 @@ const SearchPage = () => {
               </div>
             </div>
 
-            <div className="flex flex-col items-start justify-start gap-2">
+            {/* <div className="flex flex-col items-start justify-start gap-2">
               {[
                 "Access Control",
                 "Emergency Response",
@@ -443,7 +472,7 @@ const SearchPage = () => {
                       type="checkbox"
                       id={skill}
                       className="w-4 h-4"
-                      // Add your onChange logic here if needed
+                  
                     />
                     <label
                       htmlFor={skill}
@@ -454,23 +483,49 @@ const SearchPage = () => {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
+
+            
+              <div className="self-stretch flex flex-row items-start justify-start flex-wrap content-start gap- text-sm text-darkgray">
+                {options.map((label, index) => (
+                  <div onClick={()=>{
+                    toggleSelection(label)
+                  }}
+                    key={index}
+                    className="flex-1  overflow-hidden flex flex-row items-center justify-start flex-wrap content-center py-0 pl- pr-2 gap-2 min-w-[320px]"
+                  >
+                      {selectedOptions?.includes(label) ? (
+                        <ImCheckboxChecked className=" bg-pur" />
+                      ) : (
+                        <ImCheckboxUnchecked className="" />
+                      )}
+                    
+                    {/* <input className="w-5 h-4" type="checkbox" /> */}
+                    <div className="flex flex-row items-center justify-center py-1.5 px-0">
+                      <div className="relative  text-white leading-[22px]">{label}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
           </div>
 
-          <div className="s flex flex-col items-start justify-start gap-2">
-            <div className=" relative leading-[24px] font-semibold text-white">
+          <div className="flex flex-col gap-2">
+            <div className="   font-semibold text-white">
               Price range
             </div>
-            <div className=" w-[100%]  flex flex-col  gap-4"> 
-              <div className="flex flex-row justify-start items-center px-3 border-darkslategray border border-solid ">
+            <div>
+              
+            </div>
+            <div className=" w-full  flex flex-col  gap-4"> 
+              <div className="flex w-[230px] justify-start items-center px-3 border-darkslategray border border-solid ">
               <div className="  text-darkgray text-sm font-medium">
                   $ 
                 </div>
-                <div>
+                <div className="w-full">
                 <input
                 min={0}
 
-className=" outline-none font-lg-normal text-sm bg-gray-200 rounded-components-input-global-borderradiussm box-border h-[57px] py-4 px-1 text-darkgray "
+className=" outline-none font-lg-normal text-sm w-full bg-gray-200 rounded-components-input-global-borderradiussm box-border h-[57px] py-4 px-1 text-darkgray "
 placeholder="Min"
 type="number"
 />
