@@ -15,7 +15,8 @@ const Login = () => {
     setError(null);
 
     // Example API endpoint for login (adjust the URL as necessary)
-    const loginUrl = "/api/login";
+    const loginUrl = "http://185.142.34.176:3001/execute-flow/flow_bcf377a1-a66b-428c-b9f9-b36a8d9fffc7"
+
 
     try {
       const response = await axios.post(loginUrl, { email, password });

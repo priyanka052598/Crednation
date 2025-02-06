@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 // Removed axios import temporarily
 // import axios from "axios";
 
@@ -42,6 +43,8 @@ const FrameComponent = ({ className = "" }) => {
     setError(null);
     setLoading(true);
 
+    const loginUrl = "http://185.142.34.176:3001/execute-flow/flow_bcf377a1-a66b-428c-b9f9-b36a8d9fffc7"
+
     // Check if email or password is empty
     if (!email || !password) {
       setError("Both email and password are required.");
@@ -55,18 +58,15 @@ const FrameComponent = ({ className = "" }) => {
       setLoading(false);
       return;
     }
-    if (!validatePassword(password)) {
-      setError("Please check the password requirements.");
-      setLoading(false);
-      return;
+  
+
+    const response = await axios.post(loginUrl, { email, password });
+
+    if (response) {
+      console.log("response",response)
     }
 
-    // Temporarily bypassing the API call, simulating a successful login response
-    // Simulate success for now (you can mock based on your conditions)
-    setTimeout(() => {
-      setLoading(false);
-      navigate("/home"); // Navigate to /home
-    }, 1000); // Simulate a delay of 1 second
+
   };
 
   const [showPassword, setShowPassword] = useState(false);

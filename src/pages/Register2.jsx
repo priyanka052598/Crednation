@@ -492,21 +492,8 @@ const RegisterAsAGuard = () => {
         justifyContent: 'center',
         marginTop: '20px',
       }}>
-        {/* <button onClick={() => 
-        setIsPopupVisible(false)
-      }
-         style={{
-          padding: '15px 20px',
-          width:"100%",
-          backgroundColor: "#3E065F",
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          fontSize: '16px',
-        }}>
-          Got it thanks!
-        </button> */}
+      
+     
 
 <button
               onClick={() => {

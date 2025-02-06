@@ -273,7 +273,7 @@ const SearchPage = () => {
         {
           (showFilter || window.innerWidth>500) && 
        
-        <div className={` bg-gray-300 ${window.innerWidth<500?"w-full":""} overflow-hidden  flex flex-col items-start p-8  gap-8`}>
+        <div className={` bg-gray-300 ${window.innerWidth<500?"w-full":""}  w-[260px] overflow-hidden  flex flex-col items-start p-8  gap-8`}>
 
        {window.innerWidth<500 &&   <div onClick={()=>{setShowFilter(false)}} className="flex justify-start items-center cursor-pointer gap-2"> <FaArrowLeft/>Back to Search</div>}  
           <div className=" flex flex-col   gap-2">
