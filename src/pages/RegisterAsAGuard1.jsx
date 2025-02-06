@@ -20,7 +20,7 @@ const RegisterAsAGuard1 = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: "",
-    phoneNumber: "123123123",
+    phoneNumber: "",
     email: "",
     password: "",
     userType:"guard"

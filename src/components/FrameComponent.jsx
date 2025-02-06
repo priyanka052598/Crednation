@@ -3,6 +3,9 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { MdEmail } from "react-icons/md";
+import { RiLockPasswordFill } from "react-icons/ri";
+
 // Removed axios import temporarily
 // import axios from "axios";
 
@@ -85,12 +88,9 @@ const FrameComponent = ({ className = "" }) => {
         <div className="self-stretch relative text-base leading-[24px] font-semibold font-sm-strong text-components-button-component-primarycolor text-left">
           Email Address
         </div>
-        <div className="self-stretch rounded-components-input-global-borderradiussm bg-gray-100 border-darkslategray border-[1px] border-solid box-border flex flex-row items-center justify-start py-2.5 px-[15px] min-h-[56px] max-w-full">
-          <img
-            className="h-5 w-5"
-            alt="Email Icon"
-            src="/clip-path-group.svg"
-          />
+        <div className="self-stretch rounded-components-input-global-borderradiussm bg-gray-100 border-darkslategray border-[1px] border-solid box-border flex flex-row items-center justify-start py-2 px-[15px] min-h-[56px] max-w-full">
+        <MdEmail className="text-darkgray text-[26px]"/>
+         
           <input
             type="email"
             value={email}
@@ -116,18 +116,15 @@ const FrameComponent = ({ className = "" }) => {
           Forgot Password?
         </div>
       </div>
-      <div className="self-stretch rounded-components-input-global-borderradiussm bg-gray-100 border-darkslategray border-[1px] border-solid box-border flex flex-row items-center justify-start py-2.5 px-[15px] gap-2.5 min-h-[56px] max-w-full">
-        <img
-          className="h-5 w-5"
-          alt="Password Icon"
-          src="/clip-path-group-1.svg"
-        />
+      <div className="self-stretch rounded-components-input-global-borderradiussm bg-gray-100 border-darkslategray border-[1px] border-solid box-border flex flex-row items-center justify-start py-2.5 px-[15px] gap-2 min-h-[56px] max-w-full">
+    <RiLockPasswordFill className="text-darkgray text-[26px]"/>
+      
         <input
           type={showPassword ? "text" : "password"} // Toggle between password and text
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter your password"
-          className="w-full bg-transparent text-darkgray border-none outline-none px-2"
+          className="w-full bg-transparent text-darkgray border-none outline-none "
           required
         />
         <div onClick={togglePasswordVisibility} className="cursor-pointer">

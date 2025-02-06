@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 // import axios from "axios"; // Commented out for now
 import { useState } from "react";
 // import { AiOutlineCreditCard } from "react-icons/ai";
@@ -408,11 +408,11 @@ const RegisterAsAGuard = () => {
                 </div>
               </div>
             </div>
-            <button  onClick={handleSubmit} className="cursor-pointer [border:none] py-[15px] px-12 bg-ripe-plum-950 self-stretch shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg h-[59px] flex flex-row items-center justify-center box-border">
+            <Link  to="/ShowModal"  className="cursor-pointer [border:none] py-[15px] px-12 bg-ripe-plum-950 self-stretch shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg h-[59px] flex flex-row items-center justify-center box-border">
               <div className="relative text-base leading-[24px] font-lg-normal text-ripe-plum-50 text-center">
                 Submit
               </div>
-            </button>
+            </Link>
           </div>
 
           {/* {isPopupVisible && (
@@ -438,85 +438,6 @@ const RegisterAsAGuard = () => {
 
 
 
-{isPopupVisible && (
-  <div className="popup-overlay" style={{
-    position: 'fixed',
-    top: '0',
-    left: '0',
-    right: '0',
-    bottom: '0',
-    backgroundColor: "rgba(0, 0, 0, 0.9)", /* Semi-transparent black */
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: '9999',
-  }}>
-    <div className="popup" style={{
-      backgroundColor: '#18181B',
-      padding: '30px',
-      borderRadius: '8px',
-      width: '80%',
-      maxWidth: '400px',
-      color: 'white',
-      boxShadow: '0 4px 10px rgba(0, 0, 0, 0.3)',
-      // marginRight:"6px"
-    }}>
-      <div className="popup-header flex flex-col justify-center items-center" style={{
-        // display: 'flex',
-        alignItems: 'center',
-        marginBottom: '20px',
-      }}>
-        <div className={`w-12 h-12  rounded-full bg-gray-400 flex justify-center items-center`} style={{ marginRight: '18px' }}>
-          <FaCircleCheck className= "text-[#3E065F]" />
-        </div>
-        <div>
-          <h3 style={{
-            fontSize: '29px',
-            margin: '0',
-          }} className="text-white text-center py-5">Registration Successful</h3>
-          <span  style={{
-            fontSize: '16px',
-            fontWeight: 'normal',
-            display: 'block',
-            textAlign:"center",
-            marginTop: '5px',
-          }}>Thank you for your interest</span>
-        </div>
-      </div>
-      <div className="popup-body">
-        <p className="text-[20px] my-7 text-gray-150 text-center font-normal">Your application has been successfully submitted. Our team will review your information and contact you within 2-3 business days.</p>
-      </div>
-      <div className="popup-footer" style={{
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: '20px',
-      }}>
-      
-     
-
-<button
-              onClick={() => {
-             
-                navigate('/home'); // Navigate to /home
-                setIsPopupVisible(false);
-              }}
-              style={{
-                padding: '15px 20px',
-                width:"100%",
-                backgroundColor: "#3E065F",
-                color: 'white',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                fontSize: '16px',
-              }}>
-              Got it thanks!
-            </button>
-      </div>
-    </div>
-  </div>
-)}
 
         </div>
         <div className="flex-1 flex flex-col items-start justify-center gap-8 min-w-[280px] max-w-[480px] text-xl">

@@ -14,6 +14,8 @@ import ContactUs from "./pages/ContactUs";
 import ProfilePage from "./pages/ProfilePage";
 import BookingPage from "./pages/BookingPage";
 import RegisterAsAGuard from "./pages/Register2";
+import ShowModal from "./pages/ShowModal";
+import ShowModalAfterBooking from "./pages/ShowModalAfterBooking";
 
 function App() {
   const action = useNavigationType();
@@ -98,6 +100,8 @@ function App() {
       <Route path="/booking" element={<BookingPage />} />
       <Route path="/register1" element={<RegisterAsAGuard1 />} />
       <Route path="/register2" element={<RegisterAsAGuard />} />
+      <Route path="/ShowModal" element={<ShowModal/>}/>
+      <Route path="/ShowModalAfterBooking" element={<ShowModalAfterBooking/>} />
 
     </Routes>
   );

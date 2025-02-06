@@ -42,6 +42,7 @@ const Home = () => {
 
 
   const handleChange = (e) => {
+
     const { name, value } = e.target;
     if (name === "minBudget" && value < 0) {
       return;
@@ -54,6 +55,7 @@ const Home = () => {
       [name]: value,
     }));
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -242,6 +244,12 @@ const Home = () => {
             </button>
           </form>
         </div>
+
+
+
+
+
+       
 
         <img
           className="hidden md:block flex-1 rounded-lg max-w-full md:max-w-[560px] overflow-hidden h-auto md:h-[548px] object-cover min-w-[256px]"

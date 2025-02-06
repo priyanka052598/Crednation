@@ -8,7 +8,7 @@ import { CgSandClock } from "react-icons/cg";
 import { FaCircleCheck } from "react-icons/fa6";
 
 import "../../src/global.css"
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 
 
@@ -17,7 +17,7 @@ const BookingPage = () => {
     const navigate = useNavigate();
   
   const [step, setStep] = useState(1);
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
 
 
@@ -30,14 +30,14 @@ const BookingPage = () => {
     if (step > 1) setStep(step - 1);
   };
 
-  const handleConfirm = () => {
-    setShowModal(true);
-  };
+  // const handleConfirm = () => {
+  //   setShowModal(true);
+  // };
 
-  const closeModal = () => {
-    setShowModal(false);
-    setStep(1);
-  };
+  // const closeModal = () => {
+  //   setShowModal(false);
+  //   setStep(1);
+  // };
 
 
 
@@ -338,9 +338,9 @@ const BookingPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div onClick={handleConfirm} className="self-stretch mt-4 shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg bg-ripe-plum-950 h-[59px] flex flex-row items-center justify-center py-[15px] px-12 box-border text-center text-ripe-plum-50">
-                    <div className="relative leading-[24px]">Confirm</div>
-                  </div>
+                  <Link to="/ShowModalAfterBooking" className="self-stretch mt-4 shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg bg-ripe-plum-950 h-[59px] flex flex-row items-center justify-center py-[15px] px-12 box-border text-center text-ripe-plum-50">
+                    <div className="relative leading-[24px] ">Confirm</div>
+                  </Link>
                 </div>
               </div>
             </div>}
@@ -358,85 +358,7 @@ const BookingPage = () => {
             </div>
           )} */}
 
-{showModal && (
-  <div className="popup-overlay" style={{
-    position: 'fixed',
-    top: '0',
-    left: '0',
-    right: '0',
-    bottom: '0',
-    backgroundColor: "rgba(0, 0, 0, 0.9)", /* Semi-transparent black */
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: '9999',
-  }}>
-    <div className="popup" style={{
-      backgroundColor: '#18181B',
-      padding: '30px',
-      borderRadius: '8px',
-      width: '80%',
-      maxWidth: '400px',
-      color: 'white',
-      boxShadow: '0 4px 10px rgba(0, 0, 0, 0.3)',
-      // marginRight:"6px"
-    }}>
-      <div className="popup-header flex flex-col justify-center items-center" style={{
-        // display: 'flex',
-        alignItems: 'center',
-        marginBottom: '20px',
-      }}>
-        <div className={`w-12 h-12  rounded-full bg-gray-400 flex justify-center items-center`} style={{ marginRight: '18px' }}>
-          <FaCircleCheck className= "text-[#3E065F]" />
-        </div>
-        <div>
-          <h3 style={{
-            fontSize: '29px',
-            margin: '0',
-          }} className="text-white text-center py-5">Registration Successful</h3>
-          <span  style={{
-            fontSize: '16px',
-            fontWeight: 'normal',
-            display: 'block',
-            textAlign:"center",
-            marginTop: '5px',
-          }}>Thank you for your interest</span>
-        </div>
-      </div>
-      <div className="popup-body">
-        <p className="text-[20px] my-7 text-gray-150 text-center font-normal">Your application has been successfully submitted. Our team will review your information and contact you within 2-3 business days.</p>
-      </div>
-      <div className="popup-footer" style={{
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: '20px',
-      }}>
-      
-     
-
-<button
-              onClick={() => {
-             
-                navigate('/search'); // Navigate to /home
-              
-              }}
-              style={{
-                padding: '15px 20px',
-                width:"100%",
-                backgroundColor: "#3E065F",
-                color: 'white',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                fontSize: '16px',
-              }}>
-              Got it thanks!
-            </button>
-      </div>
-    </div>
-  </div>
-)}
+{/* {showModal && <ShowModalAfterBooking/>} */}
 
 
 
