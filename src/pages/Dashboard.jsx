@@ -428,7 +428,7 @@ const Dashboard = () => {
                 </svg>
               </div>
               <button className="px-6 py-4 text-white transition-colors bg-purple-700 rounded-lg hover:bg-purple-600">
-                Add Job
+                Search Job
               </button>
             </div>
           </div>
