@@ -37,3 +37,6 @@ Thumbs.db
 # Local Netlify folder
 
 .vercel
+
+yarn.lock
+.yarn/*
