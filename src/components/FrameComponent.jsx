@@ -54,8 +54,7 @@ const FrameComponent = ({ className = "" }) => {
       setLoading(false);
       return;
     }
-
-    // Validate email and password
+  
     if (!validateEmail(email)) {
       setError("Please enter a valid email.");
       setLoading(false);
@@ -71,6 +70,7 @@ const FrameComponent = ({ className = "" }) => {
 
 
   };
+  
 
   const [showPassword, setShowPassword] = useState(false);
 

@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useCallback, useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
@@ -20,6 +20,8 @@ const SearchPage = () => {
     // Please sync "Profile page" to the project
   }, []);
 
+  // const [guards, setGuards] = useState([]);
+  const [checkedSkills, setCheckedSkills] = useState([]);
   const [showFilter, setShowFilter] = useState(false
   )
 
@@ -134,7 +136,7 @@ const SearchPage = () => {
                 alt=""
                 src="/icon--searchoutlined.svg"
               />
-              <div className="relative leading-[24px]">Quick Filters</div>
+              {/* <div className="relative leading-[24px]">Quick Filters</div> */}
             </div>
           </div>
         </div>
@@ -246,7 +248,7 @@ const SearchPage = () => {
           </div>
         </div>
       </div>
-      <div className="rounded-81xl border-ripe-plum-50 border-[1px] border-solid box-border h-10 overflow-hidden flex flex-col items-center justify-center">
+      {/* <div className="rounded-81xl border-ripe-plum-50 border-[1px] border-solid box-border h-10 overflow-hidden flex flex-col items-center justify-center">
         <div className="self-stretch flex-1 flex flex-row items-center justify-center py-2.5 px-6">
           <div className="relative leading-[22px]">Armed</div>
         </div>
@@ -265,7 +267,7 @@ const SearchPage = () => {
         <div className="self-stretch flex-1 flex flex-row items-center justify-center py-2.5 px-6">
           <div className="relative leading-[22px]">24x7 </div>
         </div>
-      </div>
+      </div> */}
     </div>
       }
       
@@ -304,7 +306,8 @@ const SearchPage = () => {
             <div className="w-[250px] relative leading-[24px] font-semibold flex items-center h-[22px] shrink-0">
               Ratings
             </div>
-            <div className="flex flex-col items-start justify-start gap-2 text-sm">
+            <StarRating />
+            {/* <div className="flex flex-col items-start justify-start gap-2 text-sm">
               <div className="w-[250px] flex flex-col items-start justify-center">
                 <div className="w-[250px] flex flex-col items-start justify-start">
                   <div className="w-[250px] flex flex-row items-center justify-center gap-1">
@@ -433,7 +436,7 @@ const SearchPage = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="flex flex-col items-start justify-start gap-2 text-sm">
             <div className="w-[250px] relative text-base leading-[24px] font-semibold flex items-center h-[22px] shrink-0">
@@ -524,6 +527,8 @@ const SearchPage = () => {
                 <div className="w-full">
                 <input
                 min={0}
+                value={formData.minRate}
+                onChange={(e) => setFormData(prev => ({...prev, minRate: e.target.value}))}
 
 className=" outline-none font-lg-normal text-sm w-full bg-gray-200 rounded-components-input-global-borderradiussm box-border h-[57px] py-4 px-1 text-darkgray "
 placeholder="Min"
@@ -539,6 +544,8 @@ type="number"
                 <div>
                 <input
                 min={0}
+                value={formData.maxRate}
+                onChange={(e) => setFormData(prev => ({...prev, maxRate: e.target.value}))}
 
 className=" outline-none font-lg-normal text-sm bg-gray-200 rounded-components-input-global-borderradiussm box-border h-[57px] py-4 px-1 text-darkgray "
 placeholder="Max"
@@ -559,10 +566,49 @@ type="number"
             <div className="self-stretch rounded bg-ripe-plum-50 flex flex-col items-start justify-start">
               <div className="self-stretch flex flex-row items-start justify-start">
                 <div className="flex-1 rounded-components-input-global-borderradiussm bg-gray-200 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-components-input-component-paddinginline gap-2.5">
+
+                <select
+                  name="serviceType"
+                  value={formData.serviceType}
+                  style={{
+                    colorScheme: "dark"
+                  }}
+                  onChange={() => {}}
+                  className="w-full bg-gray-100 text-[#9CA3AF] border-none outline-none px-1"
+                >
+                  <option value="" disabled>
+                    Select Service Type
+                  </option>
+                  <option value="Security Guard">Security Guard</option>
+                  <option value="Event Guard">Event Guard</option>
+                  <option value="Patrol Guard">Patrol Guard</option>
+                  <option value="VIP Protection">VIP Protection</option>
+                </select>
+                  <div className="w-6 flex flex-col items-start justify-start py-[9px] px-1.5 box-border">
+                    <img
+                      className="w-3 relative h-1.5 object-contain"
+                      alt=""
+                      src="/vector-9.svg"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="self-stretch flex flex-col items-start justify-start gap-2">
+            <div className="relative leading-[24px] font-semibold">
+              Skill
+            </div>
+            <div className="self-stretch rounded bg-ripe-plum-50 flex flex-col items-start justify-start">
+              <div className="self-stretch flex flex-row items-start justify-start">
+                <div className="flex-1 rounded-components-input-global-borderradiussm bg-gray-200 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-components-input-component-paddinginline gap-2.5">
                   <input
                     className="[border:none] [outline:none] font-lg-normal text-sm bg-[transparent] w-28 relative leading-[22px] text-darkgray text-left flex items-center h-5 shrink-0"
-                    placeholder="All Services"
+                    placeholder="Skill"
                     type="text"
+                    value={formData.skill}
+                    onChange={(e) => setFormData(prev => ({...prev, skill: e.target.value}))}
                   />
                   <div className="w-6 flex flex-col items-start justify-start py-[9px] px-1.5 box-border">
                     <img
@@ -575,6 +621,27 @@ type="number"
               </div>
             </div>
           </div>
+{/* 
+                        <div className="flex items-center bg-gray-100 border border-darkslategray rounded-lg px-4  py-3">
+                <AiOutlineAppstore className="text-darkgray text-[18px]" />
+                <select
+                  name="serviceType"
+                  value={formData.serviceType}
+                  style={{
+                    colorScheme: "dark"
+                  }}
+                  onChange={handleChange}
+                  className="w-full bg-gray-100 text-[#9CA3AF] border-none outline-none px-1"
+                >
+                  <option value="" disabled>
+                    Select Service Type
+                  </option>
+                  <option value="Security Guard">Security Guard</option>
+                  <option value="Event Guard">Event Guard</option>
+                  <option value="Patrol Guard">Patrol Guard</option>
+                  <option value="VIP Protection">VIP Protection</option>
+                </select>
+              </div> */}
           <button className="cursor-pointer [border:none] py-0 px-components-button-component-paddinginlinelg bg-ripe-plum-950 self-stretch shadow-[0px_2px_0px_rgba(5,_145,_255,_0.1)] rounded-components-button-global-borderradiuslg h-14 flex flex-col items-center justify-center box-border">
             <div className="h-components-button-global-controlheightlg flex flex-row items-center justify-center gap-components-button-global-marginxs">
               <img
@@ -582,7 +649,7 @@ type="number"
                 alt=""
                 src="/icon--searchoutlined1.svg"
               />
-              <div className="relative text-base leading-[24px] font-lg-normal text-components-button-component-primarycolor text-left">
+              <div onClick={handleApplyFilters} className="relative text-base leading-[24px] font-lg-normal text-components-button-component-primarycolor text-left">
                 Apply Filters
               </div>
             </div>
@@ -594,7 +661,7 @@ type="number"
                 alt=""
                 src="/icon--searchoutlined1.svg"
               />
-              <div className="relative text-base leading-[24px] font-lg-normal text-components-button-component-primarycolor text-left">
+              <div onClick={() =>clearState()} className="relative text-base leading-[24px] font-lg-normal text-components-button-component-primarycolor text-left">
                 Clear Filters
               </div>
             </div>
@@ -610,7 +677,7 @@ type="number"
                             Security Guards in New York
                           </div>
                           <div className="self-stretch relative text-base leading-[24px]">
-                            245 results found
+                            {guards.length} results found
                           </div>
                         </div>
                         { (  window.innerWidth <500) &&
@@ -631,7 +698,7 @@ type="number"
                               <img
                                 className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover z-[0]"
                                 alt=""
-                                src="/image-1-1@2x.png"
+                                src={item?.pic ? item?.pic : "/image-1-1@2x.png"}
                               />
                               <div className="!m-[0] absolute top-[0px] right-[0.3px] flex flex-col items-start justify-start p-2 z-[1]">
                                 <div className="rounded bg-ripe-plum-100 overflow-hidden flex flex-row items-center justify-start py-1 px-2 gap-1">
@@ -649,7 +716,7 @@ type="number"
                             <div className="self-stretch flex flex-row items-start justify-between">
                               <div className="flex flex-col items-start justify-start gap-1">
                                 <div className="self-stretch relative text-xl leading-[28px] font-semibold font-lg-normal text-ripe-plum-50 text-left">
-                                  {item.name}
+                                  {item?.userDetails?.fullName}
                                 </div>
                                 <div className="self-stretch flex flex-row items-center justify-start gap-1">
                                   <div className="w-5 h-7 flex flex-row items-center justify-center">
@@ -661,7 +728,7 @@ type="number"
                                     /> */}
                                   </div>
                                   <div className="relative text-sm leading-[22px] font-lg-normal text-bunker-50 text-left">
-                                    {item.location}
+                                    {item?.address}
                                   </div>
                                 </div>
                               </div>
@@ -673,15 +740,15 @@ type="number"
                                 />
                                 <div className="flex flex-row items-center justify-start gap-1">
                                   <div className="relative text-base leading-[24px] font-semibold font-lg-normal text-ripe-plum-50 text-center">
-                                    {item.rating}
+                                    {item.rating ?? "4.8"}
                                   </div>
                                   <div className="relative text-[12px] leading-[20px] font-lg-normal text-bunker-50 text-center">
-                                   ( {item.reviews})
+                                   ( {item.reviews ?? "good"})
                                   </div>
                                 </div>
                               </div>
                             </div>
-                            <div className="flex flex-row items-start justify-start gap-2">
+                            {/* <div className="flex flex-row items-start justify-start gap-2">
                               <div className="rounded-81xl bg-bunker-900 overflow-hidden flex flex-col items-center justify-center p-1">
                                 <div className="self-stretch flex flex-row items-center justify-center py-0 px-2">
                                   <div className="relative text-xs leading-[20px] font-lg-normal text-bunker-50 text-center">
@@ -703,7 +770,7 @@ type="number"
                                   </div>
                                 </div>
                               </div>
-                            </div>
+                            </div> */}
                             <div className="self-stretch flex flex-row items-center justify-between">
                               <div className="flex flex-col items-start justify-start">
                                 <div className="self-stretch flex flex-row items-center justify-start gap-1">
@@ -715,14 +782,14 @@ type="number"
                                     />
                                   </div>
                                   <div className="relative text-sm leading-[22px] font-lg-normal text-bunker-50 text-left">
-                                    {item.experience}
+                                    {item?.experience}
                                   </div>
                                 </div>
                               </div>
                               <div className="flex flex-row items-start justify-start gap-1">
                                 <div className="flex flex-row items-center justify-start gap-1">
                                   <div className="relative text-xl leading-[28px] font-semibold font-lg-normal text-ripe-plum-50 text-center">
-                                    $35
+                                    ${item.minRate}
                                   </div>
                                   <div className="relative text-xs leading-[20px] font-lg-normal text-bunker-50 text-center">
                                     /hour
@@ -730,14 +797,16 @@ type="number"
                                 </div>
                               </div>
                             </div>
-                            <Link to="/booking" className="cursor-pointer [border:none] p-0 bg-ripe-plum-950 self-stretch rounded-lg h-12 overflow-hidden shrink-0 flex flex-col items-center justify-center">
+                            {/* <Link to="/booking" className="cursor-pointer [border:none] p-0 bg-ripe-plum-950 self-stretch rounded-lg h-12 overflow-hidden shrink-0 flex flex-col items-center justify-center"> */}
+                            <div onClick={() => handleHireGuard(item?.userID, item?.minRate)} className="cursor-pointer [border:none] p-0 bg-ripe-plum-950 self-stretch rounded-lg h-12 overflow-hidden shrink-0 flex flex-col items-center justify-center">
                               <div className="self-stretch flex-1 flex flex-row items-center justify-center py-2.5 px-6">
                                 <div  className="relative text-sm leading-[22px] font-lg-normal text-ripe-plum-50 text-center">
                                   Hire Guard
                                 </div>
                               </div>
-                            </Link>
-                            <button className="cursor-pointer border-ripe-plum-50 border-[1px] border-solid p-0 bg-[transparent] self-stretch rounded-lg box-border h-12 overflow-hidden shrink-0 flex flex-col items-center justify-center">
+                            </div>
+                            {/* </Link> */}
+                            {/* <button className="cursor-pointer border-ripe-plum-50 border-[1px] border-solid p-0 bg-[transparent] self-stretch rounded-lg box-border h-12 overflow-hidden shrink-0 flex flex-col items-center justify-center">
                               <Link to="/profile" className="no-underline">
                                 <div className="self-stretch flex-1 flex flex-row items-center justify-center py-2.5 px-6">
                                   <div className="relative text-sm leading-[22px] font-lg-normal text-ripe-plum-50 text-center">
@@ -745,7 +814,7 @@ type="number"
                                   </div>
                                 </div>
                               </Link>
-                            </button>
+                            </button> */}
                           </div>
           
                           })}

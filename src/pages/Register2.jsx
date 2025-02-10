@@ -22,6 +22,7 @@ const RegisterAsAGuard = () => {
     maxRate: "",
     experience: "",
     additionalInfo: "",
+    serviceType: ""
   });
 
   console.log("register1Data",register1Data)
@@ -133,7 +134,79 @@ const RegisterAsAGuard = () => {
       }
     });
   };
-  
+
+
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   let guardId = JSON.parse(register1Data)
+  //   // Build the combined data object with the required keys
+  //   const dataToSend = {
+  //     userID: guardId.result.userId || "G1303", // Use guardID from register1Data or default to G1303
+  //     skills: selectedOptions,
+  //     summary: formData.profileSummary,
+  //     minRate: parseInt(formData.minRate),
+  //     maxRate: parseInt(formData.maxRate),
+  //     experience: formData.experience,
+  //     additionalInfo: formData.additionalInfo,
+  //     // serviceType: formData.serviceType,
+  //     // address: formData.address || "", // If address is available in formData, use it
+  //     createdDate: new Date().toISOString(), // Using the current time for createdDate
+  //     updatedDate: new Date().toISOString(), // Same for updatedDate
+  //   };
+
+  //   console.log("datadata ", dataToSend)
+
+  //   let validationErrors = {};
+
+  //   // Validate the form data
+  //   Object.keys(formData).forEach((key) => {
+  //     validationErrors[key] = validate(key, formData[key]);
+  //   });
+
+  //   // if (Object.values(validationErrors).some((err) => err !== "")) {
+  //   //   console.log("Validation errors:", validationErrors);
+  //   //   return;
+  //   // }
+
+  //   try {
+  //     // Send data to API
+  //     const response = await axios.post(
+  //       "https://engine.flashbuild.ai/execute-flow/flow_57120abf-fb09-45ce-afdf-2a2c66256a1f",
+  //       dataToSend
+  //     );
+  //     const data = JSON.parse(response.data)
+
+  //     console.log("Response:", data);
+
+  //     // try {
+  //     //   const dataToSend2 = {
+  //     //     "guardID": guardId.result.guardId,
+  //     //     "senderEmail": "deepanshuqa@gmail.com"
+  //     // }
+
+  //     //   const response2 = await axios.post(
+  //     //     "https://engine.flashbuild.ai/execute-flow/flow_95f13926-0ce4-4dba-a490-3463ed9fa723",
+  //     //     dataToSend2
+  //     //   );
+  //     // } catch(err) {
+  //     //   console.log("Error while sending email ", err)
+  //     // }
+
+  //     await onUploadProfilePicture()
+
+
+  //     alert(data.result.message)
+  //     // Navigate to the next page if API call is successful
+  //     navigate("/ShowModal");
+  //   } catch (error) {
+  //     console.log("errorerror ", error)
+  //     alert("An error occurred while submitting the form. Please try again.");
+  //   }
+  // };
+
+
 
 
   const handleSubmit = async (e) => {
@@ -144,8 +217,8 @@ const RegisterAsAGuard = () => {
       guardID: register1Data.guardID || "G1303", // Use guardID from register1Data or default to G1303
       skills: selectedOptions.map((item)=> item), 
       summary: formData.profileSummary,
-      minRate: formData.minRate,
-      maxRate: formData.maxRate,
+      minRate: parseInt(formData.minRate),
+      maxRate: parseInt(formData.maxRate),
       experience: formData.experience,
       additionalInfo: formData.additionalInfo,
       address: formData.address || "address of guard", // If address is available in formData, use it
@@ -154,21 +227,13 @@ const RegisterAsAGuard = () => {
     };
   
     let validationErrors = {};
-  
-    // Validate the form data
     Object.keys(formData).forEach((key) => {
       validationErrors[key] = validate(key, formData[key]);
     });
-  
-    // if (Object.values(validationErrors).some((err) => err !== "")) {
-    //   console.log("Validation errors:", validationErrors);
-    //   return;
-    // }
-  
+
     try {
-      // Send data to API
       const response = await axios.post(
-        "http://185.142.34.143:5001/execute-flow/flow_57120abf-fb09-45ce-afdf-2a2c66256a1f",
+        "https://engine.flashbuild.ai/execute-flow/flow_57120abf-fb09-45ce-afdf-2a2c66256a1f",
         dataToSend
       );
       console.log("Response:", response.data);
@@ -259,40 +324,41 @@ const RegisterAsAGuard = () => {
                         <div className="relative text-base leading-[24px] font-semibold text-ripe-plum-50 overflow-hidden text-ellipsis whitespace-nowrap">
                           Browse files
                         </div>
+                        <span>{profilePictureFile?.name ?? ""}</span>
                       </div>
                     </div>
                   </label>
-                  <input className="hidden" type="file" id="file-163:2655" />
+                  <input className="hidden" type="file" id="file-163:2655" onChange={(e) => setProfilePictureFile(e.target.files[0])} />
                 </div>
               </div>
               {/* `Skills & Expertise */}
               <div className="self-stretch flex flex-col items-start justify-start gap-2 min-w-[320px] z-[1]">
                 <div className="self-stretch relative leading-[24px] font-semibold">{`Skills & Expertise `}</div>
-              
-       
 
 
-  <div className="self-stretch flex flex-row items-start justify-start flex-wrap content-start gap-4 text-sm text-darkgray">
-    {options.map((label, index) => (
-      <div onClick={()=>{
-        toggleSelection(label)
-      }}
-        key={index}
-        className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden flex flex-row items-center justify-start flex-wrap content-center py-0 pl-4 pr-2 gap-2.5 min-w-[320px]"
-      >
-          {selectedOptions?.includes(label) ? (
-            <ImCheckboxChecked className=" bg-pur" />
-          ) : (
-            <ImCheckboxUnchecked className="" />
-          )}
-        
-        {/* <input className="w-5 h-4" type="checkbox" /> */}
-        <div className="flex flex-row items-center justify-center py-1.5 px-0">
-          <div className="relative leading-[22px]">{label}</div>
-        </div>
-      </div>
-    ))}
-  </div>
+
+
+                <div className="self-stretch flex flex-row items-start justify-start flex-wrap content-start gap-4 text-sm text-darkgray">
+                  {options.map((label, index) => (
+                    <div onClick={() => {
+                      toggleSelection(label)
+                    }}
+                      key={index}
+                      className="flex-1 rounded bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[57px] overflow-hidden flex flex-row items-center justify-start flex-wrap content-center py-0 pl-4 pr-2 gap-2.5 min-w-[320px]"
+                    >
+                      {selectedOptions?.includes(label) ? (
+                        <ImCheckboxChecked className=" bg-pur" />
+                      ) : (
+                        <ImCheckboxUnchecked className="" />
+                      )}
+
+                      {/* <input className="w-5 h-4" type="checkbox" /> */}
+                      <div className="flex flex-row items-center justify-center py-1.5 px-0">
+                        <div className="relative leading-[22px]">{label}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
 
               </div>
@@ -305,13 +371,13 @@ const RegisterAsAGuard = () => {
                   placeholder="Write a bio about yourself"
                 />
               </div>
-             
+
               <div className="self-stretch flex flex-col items-start justify-start gap-2 min-w-[320px] z-[4]">
                 <div className="self-stretch relative leading-[24px] font-semibold">
                   Rate
                 </div>
                 <div className="self-stretch w-full flex flex-row items-center justify-start content-center gap-size-base-size text-sm text-components-button-component-defaultcolor font-base-base-normal">
-                
+
                   <div className=" rounded w-1/2 flex items-center px-4  bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden  ">
                                   <div className="  text-[#9CA3AF] text-[17px] font-medium">
                                     $
@@ -407,10 +473,59 @@ const RegisterAsAGuard = () => {
                   </div>
                 </div>
               </div>
+              <div className="self-stretch flex flex-col items-start justify-start gap-2 min-w-[320px] z-[6]">
+                <div className="self-stretch relative leading-[24px] font-semibold">
+                  Service Type
+                </div>
+                <div className="self-stretch rounded-components-input-global-borderradiussm bg-gray-250 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-4 text-sm text-components-button-component-defaultcolor font-base-base-normal">
+                  <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
+                    {/* <img
+                      className="w-4 relative h-4"
+                      alt=""
+                      src="/vector4.svg"
+                    /> */}
+                    <AiOutlineAppstore className="text-darkgray text-[18px]" />
+                    <div className="relative leading-[22px] hidden">Prefix</div>
+                    {/* <input
+                      className="[border:none] [outline:none] font-lg-normal text-sm bg-[transparent] flex-1 relative leading-[22px] text-darkgray text-left inline-block overflow-hidden text-ellipsis whitespace-nowrap h-[22px]"
+                      placeholder="Write extra information you would like to be displayed"
+                      type="text"
+                      value={formData.additionalInfo}
+                      onChange={(e) => setFormData(prev => ({...prev, additionalInfo: e.target.value}))}
+                    /> */}
+                    <select
+                      name="serviceType"
+                      value={formData.serviceType}
+                      style={{
+                        colorScheme: "dark"
+                      }}
+                      onChange={handleChange}
+                      className="w-full bg-gray-100 text-[#9CA3AF] border-none outline-none px-1"
+                    >
+                      <option value="" disabled>
+                        Select Service Type
+                      </option>
+                      <option value="Security Guard">Security Guard</option>
+                      <option value="Event Guard">Event Guard</option>
+                      <option value="Patrol Guard">Patrol Guard</option>
+                      <option value="VIP Protection">VIP Protection</option>
+                    </select>
+                    <div className="relative leading-[22px] text-right hidden">
+                      Suffix
+                    </div>
+                    <img
+                      className="w-4 relative h-4 overflow-hidden shrink-0 hidden"
+                      alt=""
+                      src="/icon--infocircleoutlined.svg"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             <Link  to="/ShowModal"  className="cursor-pointer [border:none] py-[15px] px-12 bg-ripe-plum-950 self-stretch shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg h-[59px] flex flex-row items-center justify-center box-border">
               <div className="relative text-base leading-[24px] font-lg-normal text-ripe-plum-50 text-center">
-                Submit
+              {loading ? "Processing..." : "Submit"} 
+                {/* Submit */}
               </div>
             </Link>
           </div>

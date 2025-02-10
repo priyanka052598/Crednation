@@ -25,18 +25,35 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 const Home = () => {
-  const navigate = useNavigate()
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date())
   const [selectedOption, setSelectedOption] = useState(null);
   const [formData, setFormData] = useState({
-    address: "",
     startDate: "",
     endDate: "",
-    serviceType: "",
-    minBudget: "",
-    maxBudget: "",
+    minRate: "",
+    maxRate: "",
   });
+
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [cities, setCities] = useState([]);
+
+  const navigate = useNavigate();
+
+  const handleChangeState = (event) => {
+    console.log(" aaaaaaaaaaaaaaaaaaaaa ", event.target);
+    setSelectedState(event.target.value);
+    const extractedCities = City.getCitiesOfState("US", event.target.value);
+    console.log(extractedCities);
+    setCities(extractedCities);
+  };
+
+  const handleChangeCity = (event) => {
+    console.log(" ddddddddddddddddddddddd ", event.target);
+    console.log(event.target);
+    setSelectedCity(event.target.value);
+  };
 
 
 
@@ -44,10 +61,10 @@ const Home = () => {
   const handleChange = (e) => {
 
     const { name, value } = e.target;
-    if (name === "minBudget" && value < 0) {
+    if (name === "minRate" && value < 0) {
       return;
     }
-    if (name === "maxBudget" && value < 0) {
+    if (name === "maxRate" && value < 0) {
       return;
     }
     setFormData((prevState) => ({
@@ -145,6 +162,31 @@ const Home = () => {
     />
   </div>
 
+              <div className="flex items- text-[#9CA3AF] bg-gray-100  border border-darkslategray rounded-lg py-2 px-4 ">
+                <AiOutlineEnvironment className="text-[#9CA3AF] text-[22px] " />
+                <Select
+                id="city"
+                name="city"
+                value={selectedCity}
+                onChange={handleChangeCity}
+                displayEmpty
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  color: "white",
+                  outline: "none"
+                }}
+              >
+                <MenuItem value="" disabled>Select a City</MenuItem>
+
+                {cities.map((city) => (
+                  // Use something unique for the value, such as city.name or city.isoCode:
+                  <MenuItem key={city.name} value={city.name}>
+                    {city.name}
+                  </MenuItem>
+                ))}
+              </Select>
+              </div>
 
 
 
@@ -208,8 +250,8 @@ const Home = () => {
                 </span>
                 <input
                   type="number"
-                  name="minBudget"
-                  value={formData.minBudget}
+                  name="minRate"
+                  value={formData.minRate}
                   onChange={handleChange}
                   placeholder="Min. Budget"
                   className="w-full bg-transparent text-[16px] text-[#9CA3AF] border-none outline-none pl-3" // Added padding-left
@@ -223,8 +265,8 @@ const Home = () => {
                 </span>
                 <input
                   type="number"
-                  name="maxBudget"
-                  value={formData.maxBudget}
+                  name="maxRate"
+                  value={formData.maxRate}
                   onChange={handleChange}
                   placeholder="Max. Budget"
                   className="w-full bg-transparent text-[16px] text-[#9CA3AF] border-none outline-none pl-3" // Added padding-left
@@ -241,6 +283,17 @@ const Home = () => {
               className="w-full h-12 md:h-14 mt-4 md:mt-6 bg-ripe-plum-950  transition-all duration-300 ease-in-out rounded-lg text-base text-white font-semibold p-3 md:p-4"
             >
               Search Guards
+            </button> 
+            <button
+              type="submit"
+              className="w-full h-12 md:h-14 mt-4 md:mt-6 bg-ripe-plum-950 transition-all duration-300 ease-in-out rounded-lg text-base text-white font-semibold p-3 md:p-4 flex items-center justify-center"
+              disabled={loading} 
+            >
+              {loading ? (
+                <AiOutlineLoading3Quarters className="animate-spin text-white text-xl" />
+              ) : (
+                "Search Guards"
+              )}
             </button>
           </form>
         </div>

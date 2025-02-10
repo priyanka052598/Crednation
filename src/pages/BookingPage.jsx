@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { MdOutlineCalendarToday, MdOutlineLocationOn } from "react-icons/md";
@@ -6,8 +6,6 @@ import { FaArrowLeft, FaRegClock } from "react-icons/fa6";
 import { LuPersonStanding } from "react-icons/lu";
 import { CgSandClock } from "react-icons/cg";
 import { FaCircleCheck } from "react-icons/fa6";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 import "../../src/global.css"
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -21,14 +19,6 @@ const BookingPage = () => {
   const [step, setStep] = useState(1);
   // const [showModal, setShowModal] = useState(false);
 
-  const [startDate, setStartDate] = useState(new Date());
-  const ExampleCustomInput = forwardRef(
-      ({ value, onClick, className }, ref) => (
-        <button className={className} onClick={onClick} ref={ref}>
-          {value}
-        </button>
-      ),
-    );
 
 
 
@@ -83,20 +73,10 @@ const BookingPage = () => {
                             src="/icon--calendaroutlined.svg"
                           /> */}
                             <MdOutlineCalendarToday className="text-[16px] text-[#7C7C88]" />
-{/* 
+
                             <div className="flex-1 relative leading-[22px] font-lg-normal text-darkgray overflow-hidden text-ellipsis whitespace-nowrap">
                               Enter start date
-                            </div> */}
-
-                               <DatePicker
-                                  customInput={<ExampleCustomInput className="example-custom-input text-left text-[16px] text-[#9ca3af] bg-transparent  h-[50px] pt-[-2px]"  />}
-                                  selected={startDate}
-                                                onChange={(date) => setStartDate(date)}
-                                                dateFormat="yyyy-MM-dd "
-                                                // showTimeSelect
-                                                // className="bg-red-300 pt-[-4px] text-[16px] text-[#9CA3AF] flex-1 outline-none w-full"
-                                                calendarClassName="custom-calendar" // Apply custom styles
-                                              />
+                            </div>
 
                             <div className="w-[12.2px] h-2 [transform:_rotate(-180deg)]" />
                           </div>
@@ -112,21 +92,9 @@ const BookingPage = () => {
                           <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
                             <FaRegClock className="text-[16px] text-[#7C7C88]" />
 
-                            {/* <div className="flex-1 relative leading-[22px] font-lg-normal text-darkgray overflow-hidden text-ellipsis whitespace-nowrap">
+                            <div className="flex-1 relative leading-[22px] font-lg-normal text-darkgray overflow-hidden text-ellipsis whitespace-nowrap">
                               Choose start time
-                            </div> */}
-                            <DatePicker
-  customInput={
-    <ExampleCustomInput className="example-custom-input w-full text-left text-[16px] text-[#9ca3af] bg-transparent h-[50px]" />
-  }
-  selected={startDate}
-  onChange={(date) => setStartDate(date)}
-  showTimeSelect
-  showTimeSelectOnly
-  timeFormat="HH:mm"
-  dateFormat="HH:mm"
-  calendarClassName="custom-calendar" // Apply custom styles
-/>
+                            </div>
 
                             <div className="w-[12.2px] h-2 [transform:_rotate(-180deg)]" />
                           </div>
@@ -141,11 +109,10 @@ const BookingPage = () => {
                         <div className="flex-1 rounded bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden flex flex-row items-center justify-start py-0 px-4 min-w-[256px]">
                           <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
                             <CgSandClock className="text-[16px] text-[#7C7C88]" />
-                            <input className="bg-transparent outline-none text-darkgray text-[16px]" type="text" placeholder=" Total duration" />
 
-                            {/* <div className="flex-1 relative text-[16px] leading-[22px] font-lg-normal text-darkgray overflow-hidden text-ellipsis whitespace-nowrap">
+                            <div className="flex-1 relative leading-[22px] font-lg-normal text-darkgray overflow-hidden text-ellipsis whitespace-nowrap">
                               Total duration
-                            </div> */}
+                            </div>
 
                             <div className="w-[12.2px] h-2 [transform:_rotate(-180deg)]" />
                           </div>
@@ -160,11 +127,10 @@ const BookingPage = () => {
                         <div className="flex-1 rounded bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[51px] overflow-hidden flex flex-row items-center justify-start py-0 px-4 min-w-[256px]">
                           <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
                             <LuPersonStanding className="text-[20px] text-[#7C7C88]" />
-                            <input className="bg-transparent outline-none text-darkgray text-[16px]" type="text" placeholder=" Number of guard" />
 
-                            {/* <div className="flex-1 relative text-[16px] leading-[22px] font-lg-normal text-darkgray overflow-hidden text-ellipsis whitespace-nowrap">
+                            <div className="flex-1 relative leading-[22px] font-lg-normal text-darkgray overflow-hidden text-ellipsis whitespace-nowrap">
                               Number of guards
-                            </div> */}
+                            </div>
 
                             <div className="w-[12.2px] h-2 [transform:_rotate(-180deg)]" />
                           </div>
@@ -180,11 +146,10 @@ const BookingPage = () => {
                       <div className="flex-1 rounded-components-input-global-borderradiussm bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-4 min-w-[256px]">
                         <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
                           <MdOutlineLocationOn className="text-[17px] text-[#7C7C88]" />
-                          <input className="bg-transparent outline-none text-[16px] text-darkgray" type="text" placeholder="Location of service" />
 
-                          {/* <div className="flex-1 relative text-[16px] leading-[22px] font-lg-normal text-darkgray inline-block overflow-hidden text-ellipsis whitespace-nowrap h-[22px]">
+                          <div className="flex-1 relative leading-[22px] font-lg-normal text-darkgray inline-block overflow-hidden text-ellipsis whitespace-nowrap h-[22px]">
                             Location of service
-                          </div> */}
+                          </div>
 
                         </div>
                       </div>
@@ -197,11 +162,10 @@ const BookingPage = () => {
                     <div className="self-stretch rounded-components-input-global-borderradiussm bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-4 min-w-[256px] text-sm text-components-input-global-colortext font-base-base-normal">
                       <div className="flex-1 h-components-input-global-controlheight flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
                         <FaCircleCheck className="text-[15px] text-[#7C7C88]" />
-                        <input className="bg-transparent outline-none text-[16px] text-darkgray" type="text" placeholder="Write extra information" />
 
-                        {/* <div className="flex-1 relative  text-[16px] leading-[22px] font-lg-normal text-darkgray inline-block overflow-hidden text-ellipsis whitespace-nowrap h-[22px]">
+                        <div className="flex-1 relative leading-[22px] font-lg-normal text-darkgray inline-block overflow-hidden text-ellipsis whitespace-nowrap h-[22px]">
                           Write extra information
-                        </div> */}
+                        </div>
 
                       </div>
                     </div>
@@ -404,12 +368,8 @@ const BookingPage = () => {
 
         {
           step === 2 &&
-          <div className={` ${window.innerWidth>500?"w-[80%":"w-[200px]"}  mb-8   text-base`}>
-            <div className="flex gap-3">
+          <div className={` ${window.innerWidth>500?"w-[80%":"w-[200px]"} w-[%] mb-8   text-base`}>
             <FaArrowLeft onClick={prevStep} className="text-[16px] mb-5 cursor-pointer" />
-            <span>Summary</span>
-            </div>
-            
             <div className={` justify-center items-center gap-6 ${window.innerWidth<500?" flex flex-col":"flex"}` }>
 
 

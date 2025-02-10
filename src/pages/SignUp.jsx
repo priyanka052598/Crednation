@@ -4,6 +4,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { Country, State, City } from 'country-state-city';
+import { MenuItem, Select } from "@mui/material";
+const countries = Country.getAllCountries('');
+const states = State.getStatesOfCountry("US");
+// const cities = shippingInfo.state ? City.getCitiesOfState(shippingInfo.country.isoCode, shippingInfo.state.isoCode) : [];
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -19,6 +26,12 @@ const SignUp = () => {
     phone: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
+
+      const [selectedState, setSelectedState] = useState("");
+      const [selectedCity, setSelectedCity] = useState("");
+      const [cities, setCities] = useState([])
+  
 
   // State for errors
   const [errors, setErrors] = useState({});
@@ -59,6 +72,21 @@ const SignUp = () => {
     return true;
   };
 
+
+  const handleChangeState = (event) => {
+    console.log(" aaaaaaaaaaaaaaaaaaaaa ", event.target)
+    setSelectedState(event.target.value);
+    const extractedCities = City.getCitiesOfState("US", event.target.value)
+    console.log(extractedCities)
+    setCities(extractedCities)
+  };
+
+  const handleChangeCity = (event) => {
+    console.log(" ddddddddddddddddddddddd ", event.target)
+    console.log(event.target)
+    setSelectedCity(event.target.value);
+  };
+
   const validatePassword = (password) => {
     let newErrors = { ...errors };
 
@@ -76,24 +104,85 @@ const SignUp = () => {
   };
 
   // Handle form submit
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //  setLoading(true);
+  //   console.log(formData)
 
+  //   if (!validateForm()) return;
+
+  //   formData['userType'] = "Customer"
+
+  //   const response = await axios.post(
+  //     "https://engine.flashbuild.ai/execute-flow/flow_e9af1788-2ab2-4b41-a9cc-fa1da6fc1013",
+  //     formData
+  //   );
+    
+  //   let result = JSON.parse(response.data)
+    
+  //   console.log("Response:", result);
+  //   localStorage.setItem("userId", result?.result?.userId)
+
+  //   // Simulating a successful registration without an API call
+  //   toast.success("Registration Successful!", {
+  //     position: "top-right",
+  //     autoClose: 3000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //   });
+
+  //   navigate("/home");
+  // };
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (!validateForm()) return;
 
-    // Simulating a successful registration without an API call
-    toast.success("Registration Successful!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    setLoading(true); // Step 2: Start loading
 
-    navigate("/home");
-  };
+    try {
+        formData['userType'] = "Customer";
+
+        const response = await axios.post(
+            "https://engine.flashbuild.ai/execute-flow/flow_e9af1788-2ab2-4b41-a9cc-fa1da6fc1013",
+            formData
+        );
+
+        let result = JSON.parse(response.data);
+        console.log("Response:", result);
+        localStorage.setItem("userId", result?.result?.userId);
+
+        toast.success("Registration Successful!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+
+        navigate("/home");
+    } catch (error) {
+        console.error("Error:", error);
+        toast.error("Registration Failed. Please try again.", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    } finally {
+        setLoading(false); 
+    }
+};
   return (
     <div className="w-full relative [background:linear-gradient(179.48deg,_#0e0e10,_#3e065f)] h-[1157px] overflow-hidden text-center text-11xl text-ripe-plum-50 font-lg-normal">
       <ToastContainer />
@@ -244,11 +333,90 @@ const SignUp = () => {
                 )}
               </div>
             </div>
+            <div className="self-stretch flex flex-col items-start justify-start gap-2 text-xs text-darkgray">
+              <div className="self-stretch flex flex-row items-start justify-start text-base text-components-button-component-primarycolor">
+                <div className="relative leading-[24px] font-semibold">
+                  State
+                </div>
+              </div>
+              <div className="w-full sm:w-[401px] md:w-[600px] lg:w-[800px] xl:w-[450px] rounded-components-input-global-borderradiussm bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-4 text-sm text-components-input-global-colortext font-base-base-normal">
+              <div className="w-full h-[57px] flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
+
+              <Select
+                    id="state"
+                    name="state"
+                    value={selectedState}
+                    onChange={handleChangeState}
+                    // required
+                    displayEmpty
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      color: "white",
+                      outline: "none"
+                    }}
+                  >
+                    <MenuItem value="" disabled>Select a state</MenuItem>
+                    {console.log(states)}
+                    {states.map((state) => (
+                      <MenuItem key={state.isoCode} value={state.isoCode}>
+                        {state.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </div>
+                {errors.password && (
+                  <p className="text-red-500 text-sm">{errors.password}</p>
+                )}
+              </div>
+            </div>
+            <div className="self-stretch flex flex-col items-start justify-start gap-2 text-xs text-darkgray">
+              <div className="self-stretch flex flex-row items-start justify-start text-base text-components-button-component-primarycolor">
+                <div className="relative leading-[24px] font-semibold">
+                  City
+                </div>
+              </div>
+              <div className="w-full sm:w-[401px] md:w-[600px] lg:w-[800px] xl:w-[450px] rounded-components-input-global-borderradiussm bg-gray-100 border-darkslategray border-[1px] border-solid box-border h-[57px] flex flex-row items-center justify-start py-0 px-4 text-sm text-components-input-global-colortext font-base-base-normal">
+              <div className="w-full h-[57px] flex flex-row items-center justify-start py-components-input-component-paddingblock px-0 box-border gap-2">
+              <Select
+  id="city"
+  name="city"
+  value={selectedCity}
+  onChange={handleChangeCity}
+  displayEmpty
+  sx={{
+    width: "100%",
+    height: "100%",
+    color: "white",
+    outline: "none"
+  }}
+>
+  <MenuItem value="" disabled>Select a City</MenuItem>
+
+  {cities.map((city) => (
+    // Use something unique for the value, such as city.name or city.isoCode:
+    <MenuItem key={city.name} value={city.name}>
+      {city.name}
+    </MenuItem>
+  ))}
+</Select>
+                </div>
+                {errors.password && (
+                  <p className="text-red-500 text-sm">{errors.password}</p>
+                )}
+              </div>
+            </div>
             <button
               type="submit"
               className="font-lg-normal text-ripe-plum-50 text-center [border:none] py-[15px] px-12 bg-ripe-plum-950 self-stretch shadow-[0px_1px_2px_rgba(0,_0,_0,_0.03),_0px_1px_6px_-1px_rgba(0,_0,_0,_0.02),_0px_2px_4px_rgba(0,_0,_0,_0.02)] rounded-lg h-[59px] flex flex-row items-center justify-center box-border"
+              disabled={loading}
             >
-              Register
+              {loading ? (
+                              <AiOutlineLoading3Quarters className="animate-spin text-white text-xl" />
+                            ) : (
+                              " Register"
+                            )}
+             
             </button>
             <div className="self-stretch flex flex-row items-center justify-center gap-2 text-sm text-darkgray">
               <img

@@ -7,4 +7,8 @@ export default defineConfig({
     outDir: "build",
   },
   plugins: [react()],
+  server: {
+    allowedHosts: ['app.crednationapp.com'],
+    cors: true,
+  }  
 });
